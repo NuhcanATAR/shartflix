@@ -43,6 +43,9 @@ class BaseUtility {
       EdgeInsets.symmetric(horizontal: padding);
   static EdgeInsets vertical(double padding) =>
       EdgeInsets.symmetric(vertical: padding);
+
+  static EdgeInsets symmetric(double vertical, double horizontal) =>
+      EdgeInsets.symmetric(vertical: vertical, horizontal: horizontal);
   static EdgeInsets left(double padding) => EdgeInsets.only(left: padding);
   static EdgeInsets right(double padding) => EdgeInsets.only(right: padding);
   static EdgeInsets top(double padding) => EdgeInsets.only(top: padding);
@@ -56,6 +59,6 @@ class BaseUtility {
 
   static const double radiusCircularHighValue = 124;
   static const double radiusCircularNormalValue = 24;
-  static const double radiusCircularMediumValue = 16;
+  static const double radiusCircularMediumValue = 18;
   static const double radiusCircularLowValue = 4;
 }

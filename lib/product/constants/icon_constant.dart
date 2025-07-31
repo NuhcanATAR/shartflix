@@ -20,7 +20,8 @@ enum AppIcons {
   iconlyPro1('iconly_pro1'),
   iconlyPro2('iconly_pro2'),
   iconlyPro3('iconly_pro3'),
-  iconlyPro4('iconly_pro4');
+  iconlyPro4('iconly_pro4'),
+  addUserOutline('add_user_outline');
 
   final String value;
   const AppIcons(this.value);
