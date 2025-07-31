@@ -64,9 +64,8 @@ class BodyMediumWhiteText extends StatelessWidget {
     return Text(
       text,
       textAlign: textAlign,
-      style: CustomColorTheme().themeData.textTheme.bodyMedium!.copyWith(
+      style: CustomColorTheme().themeDataSecond.textTheme.bodyMedium!.copyWith(
         color: Theme.of(context).colorScheme.onPrimary,
-        fontWeight: FontWeight.bold,
       ),
     );
   }

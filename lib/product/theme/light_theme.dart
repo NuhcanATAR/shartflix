@@ -14,7 +14,7 @@ final class CustomColorTheme implements CustomTheme {
 
   ThemeData get themeDataSecond => ThemeData(
     useMaterial3: true,
-    fontFamily: 'Euclid Circular A Medium',
+    fontFamily: 'Euclid Circular A Regular',
     colorScheme: CustomColorScheme.colorScheme,
     floatingActionButtonTheme: floatingActionButtonThemeData,
     textTheme: textThemeData,

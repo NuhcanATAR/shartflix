@@ -33,8 +33,6 @@ final class CustomValidator {
     // just string
     if (value == null || value!.isEmpty) {
       return "Zorunlu Alan";
-    } else if (isNumeric(value) == true) {
-      return "Geçersiz Değer";
     }
     return null;
   }
