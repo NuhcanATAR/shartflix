@@ -96,6 +96,9 @@ flutter:
     - family: Euclid Circular A Bold
       fonts:
         - asset: assets/fonts/euclid-circular-a-cufonfonts/euclid_circular_a_bold.ttf
+    - family: Euclid Circular A SemiBold
+      fonts:
+        - asset: assets/fonts/euclid-circular-a-cufonfonts/eeuclid_circular_a_semibold.ttf
     - family: Euclid Circular A Medium
       fonts:
         - asset: assets/fonts/euclid-circular-a-cufonfonts/euclid_circular_a_medium.ttf
