@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shartflix/feature/authentication/sign_in/sign_in_view.dart';
+import 'package:shartflix/feature/authentication/sign_up/bloc/cubit.dart';
+import 'package:shartflix/feature/authentication/sign_up/bloc/event.dart';
+import 'package:shartflix/feature/authentication/sign_up/bloc/state.dart';
 import 'package:shartflix/feature/authentication/sign_up/provider/sign_up_provider.dart';
 import 'package:shartflix/feature/authentication/sign_up/sign_up_viewmodel.dart';
 import 'package:shartflix/product/constants/icon_constant.dart';
@@ -35,29 +38,38 @@ class _SignUpViewState extends SignUpViewModel {
             CustomColorTheme().themeDataSecond.scaffoldBackgroundColor,
         automaticallyImplyLeading: false,
       ),
-      body: Padding(
-        padding: BaseUtility.all(BaseUtility.paddingNormalValue),
-        child: Form(
-          key: signUpProvider.formSignUpKey,
-          child: Center(
-            child: ListView(
-              children: <Widget>[
-                // title and sub title
-                buildTitleAndSubTitleWidget,
-                // email and password
-                buildEmailPasswordFieldWidget(signUpProvider),
-                // forgot password
-                buildForgotPasswordWidget,
-                // sign up button
-                buildSignUpButtonWidget(signUpProvider),
-                // other sign up
-                buildOtherSignUpWidget,
-                // sign up
-                buildSignUpWidget,
-              ],
-            ),
-          ),
-        ),
+      body: BlocBuilder<SignUpBloc, SignUpState>(
+        builder: (context, state) {
+          return BlocConsumer<SignUpBloc, SignUpState>(
+            listener: signUpBlocListener,
+            builder: (context, blocConsumerstate) {
+              return Padding(
+                padding: BaseUtility.all(BaseUtility.paddingNormalValue),
+                child: Form(
+                  key: signUpProvider.formSignUpKey,
+                  child: Center(
+                    child: ListView(
+                      children: <Widget>[
+                        // title and sub title
+                        buildTitleAndSubTitleWidget,
+                        // email and password
+                        buildEmailPasswordFieldWidget(signUpProvider, state),
+                        // forgot password
+                        buildForgotPasswordWidget,
+                        // sign up button
+                        buildSignUpButtonWidget(signUpProvider),
+                        // other sign up
+                        buildOtherSignUpWidget,
+                        // sign up
+                        buildSignUpWidget,
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }
@@ -89,15 +101,20 @@ class _SignUpViewState extends SignUpViewModel {
   );
 
   // email and password
-  Column buildEmailPasswordFieldWidget(SignUpProvider signUpProvider) => Column(
+  Column buildEmailPasswordFieldWidget(
+    SignUpProvider signUpProvider,
+    SignUpState state,
+  ) => Column(
     children: <Widget>[
       // name surname
       Padding(
         padding: BaseUtility.bottom(BaseUtility.paddingNormalValue),
         child: NormalTextFieldWidget(
           controller: signUpProvider.nameSurnameController,
-          placeHolderText: 'E-posta',
-          onChanged: (String val) {},
+          placeHolderText: 'Ad Soyad',
+          onChanged: (String val) {
+            context.read<SignUpBloc>().add(SignUpNameSurnameEvent(val));
+          },
           isValidator: true,
           enabled: false,
           dynamicViewExtensions: dynamicViewExtensions,
@@ -110,7 +127,9 @@ class _SignUpViewState extends SignUpViewModel {
         child: CustomEmailFieldWidget(
           emailController: signUpProvider.emailController,
           placeHolderText: 'E-posta',
-          onChanged: (String val) {},
+          onChanged: (String val) {
+            context.read<SignUpBloc>().add(SignUpEmailEvent(val));
+          },
         ),
       ),
       // password
@@ -119,7 +138,9 @@ class _SignUpViewState extends SignUpViewModel {
         child: CustomPasswordFieldWidget(
           passwordController: signUpProvider.passwordController,
           hintText: 'Şifre',
-          onChanged: (String val) {},
+          onChanged: (String val) {
+            context.read<SignUpBloc>().add(SignUpPasswordEvent(val));
+          },
           isValidator: true,
         ),
       ),
@@ -172,7 +193,9 @@ class _SignUpViewState extends SignUpViewModel {
     padding: BaseUtility.vertical(BaseUtility.paddingNormalValue),
     child: CustomButtonWidget(
       dynamicViewExtensions: dynamicViewExtensions,
-      onTap: () => signUpProvider.signUp(context),
+      onTap: () {
+        signUpProvider.signUp(context);
+      },
       btnText: 'Şimdi Kaydol',
     ),
   );

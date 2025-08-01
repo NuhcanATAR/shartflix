@@ -65,7 +65,7 @@ class _NormalTextFieldWidgetState extends BaseState<NormalTextFieldWidget> {
             },
 
             onChanged: widget.onChanged,
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.name,
             decoration: InputDecoration(
               icon: widget.fieldIcon.toSvgImg(
                 Colors.white,

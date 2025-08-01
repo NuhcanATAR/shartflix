@@ -1,3 +1,5 @@
+// ignore_for_file: empty_constructor_bodies
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shartflix/feature/authentication/sign_in/bloc/bloc.dart';

@@ -10,7 +10,7 @@ import 'package:shartflix/product/core/helper/logger_package.dart';
 import 'package:shartflix/product/core/helper/secure_storage.dart';
 import 'package:shartflix/product/core/service/api/api.dart';
 import 'package:shartflix/product/core/service/end_point/end_point.dart';
-import 'package:shartflix/product/model/sign_in_model/sign_in_model.dart';
+import 'package:shartflix/product/model/sign_model/sign_model.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   CustomLoggerPrint loggerPrint = CustomLoggerPrint();
@@ -42,7 +42,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       if (response.statusCode == 200) {
         loggerPrint.printInfoLog('Sign In Success!');
         final jsonResponse = jsonDecode(response.body);
-        final signInResponse = SignInResponseModel.fromJson(jsonResponse);
+        final signInResponse = SignResponseModel.fromJson(jsonResponse);
         await SecureStorage().saveTokenSecurely(signInResponse.data.token);
         emit(SignInSuccess());
       } else if (response.statusCode == 400) {
