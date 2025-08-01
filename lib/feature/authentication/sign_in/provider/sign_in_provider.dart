@@ -17,7 +17,7 @@ class SignInProvider extends ChangeNotifier {
   Future<void> signIn(BuildContext context, SignInState state) async {
     if (formSignInKey.currentState!.validate()) {
       context.read<SignInBloc>().add(
-        SignInFuncEvent(state.email, state.password),
+        SignInFuncEvent(emailController.text, passwordController.text),
       );
     }
   }
