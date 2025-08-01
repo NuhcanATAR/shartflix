@@ -8,6 +8,7 @@ class BaseUtility {
   static const double iconLargeSecondSize = 55.0;
   static const double iconLargeSize = 40.0;
   static const double iconMediumSecondSize = 33.0;
+  static const double iconMediumNormalSize = 24.0;
   static const double iconMediumSize = 18.0;
   static const double iconNormalSize = 16.0;
   static const double iconSmallSize = 10.0;
@@ -26,6 +27,7 @@ class BaseUtility {
   // padding sizes
   static const double paddingHugeValue = 125.0;
   static const double paddingHightValue = 33.0;
+  static const double paddingNormalHightValue = 26.0;
   static const double paddingNormalMinValue = 18.0;
   static const double paddingNormalValue = 16.0;
   static const double paddingMediumValue = 10.0;

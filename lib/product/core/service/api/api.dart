@@ -9,4 +9,10 @@ class ApiService {
 
   // standart headers
   static Map<String, String> headers() => {'Content-Type': 'application/json'};
+
+  // token headers
+  static Map<String, String> tokenHeaders(String token) => {
+    'Authorization': 'Bearer $token',
+    'Accept': 'application/json',
+  };
 }
