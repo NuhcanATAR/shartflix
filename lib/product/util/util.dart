@@ -8,6 +8,7 @@ class BaseUtility {
   static const double iconLargeSecondSize = 55.0;
   static const double iconLargeSize = 40.0;
   static const double iconMediumSecondSize = 33.0;
+  static const double iconMediumNormalSize = 24.0;
   static const double iconMediumSize = 18.0;
   static const double iconNormalSize = 16.0;
   static const double iconSmallSize = 10.0;
