@@ -55,7 +55,7 @@ class _HomeViewState extends HomeViewModel {
                     // cover image
                     buildCoverImageWidget(homeProvider, movie),
                     // footer
-                    buildFooterWidget(movie),
+                    buildFooterWidget(homeProvider, movie),
                   ],
                 );
               },
@@ -67,7 +67,7 @@ class _HomeViewState extends HomeViewModel {
       MovieCover(imgUrl: homeProvider.fixPosterUrl(movie.poster));
 
   // footer
-  Widget buildFooterWidget(Movie movie) => Padding(
+  Widget buildFooterWidget(HomeProvider homeProvider, Movie movie) => Padding(
     padding: BaseUtility.symmetric(
       BaseUtility.paddingSmallValue,
       BaseUtility.paddingNormalValue,
@@ -77,7 +77,7 @@ class _HomeViewState extends HomeViewModel {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         // favorite button
-        buildFavoriteButtonWidget,
+        buildFavoriteButtonWidget(homeProvider, movie),
         // title and sub title
         buildTitleAndSubTitleWidget(movie),
       ],
@@ -85,10 +85,19 @@ class _HomeViewState extends HomeViewModel {
   );
 
   // favorite button
-  Widget get buildFavoriteButtonWidget => Container(
+  Widget buildFavoriteButtonWidget(
+    HomeProvider homeProvider,
+    Movie movie,
+  ) => Container(
     margin: BaseUtility.bottom(BaseUtility.marginMediumValue),
     alignment: Alignment.centerRight,
-    child: FavoriteButtonWidget(onTap: () {}),
+    child: FavoriteButtonWidget(
+      onTap: () async {
+        await homeProvider.toggleFavoriteAndRefresh(context, movie.id ?? '');
+      },
+      color:
+          homeProvider.isFavorite(movie.id ?? '') ? Colors.red : Colors.white,
+    ),
   );
 
   // title and sub title

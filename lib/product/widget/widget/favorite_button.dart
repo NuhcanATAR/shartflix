@@ -3,9 +3,14 @@ import 'package:shartflix/product/constants/icon_constant.dart';
 import 'package:shartflix/product/util/util.dart';
 
 class FavoriteButtonWidget extends StatelessWidget {
-  const FavoriteButtonWidget({super.key, required this.onTap});
+  const FavoriteButtonWidget({
+    super.key,
+    required this.onTap,
+    required this.color,
+  });
 
   final Function() onTap;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +32,7 @@ class FavoriteButtonWidget extends StatelessWidget {
           ),
         ),
         child: AppIcons.favorite.toSvgImg(
-          Colors.white,
+          color,
           BaseUtility.iconMediumNormalSize,
           BaseUtility.iconMediumNormalSize,
         ),

@@ -15,6 +15,14 @@ class EndPoint {
   static String movieListPoint(int value) =>
       "${ApiService.https}://${ApiService.server}/movie/list?page=$value";
 
+  // favorite movie toggle end point
+  static String favoriteMovieToggleEndPoint(String movieId) =>
+      "${ApiService.https}://${ApiService.server}/movie/favorite/$movieId";
+
+  // favorite movie
+  static const String favoriteMovieEndPoint =
+      "${ApiService.https}://${ApiService.server}/movie/favorites";
+
   // endpoint uri parse function
   static Uri uriParse(String endPoint) {
     return Uri.parse(endPoint);
