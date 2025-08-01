@@ -26,6 +26,7 @@ class BaseUtility {
   // padding sizes
   static const double paddingHugeValue = 125.0;
   static const double paddingHightValue = 33.0;
+  static const double paddingNormalHightValue = 26.0;
   static const double paddingNormalMinValue = 18.0;
   static const double paddingNormalValue = 16.0;
   static const double paddingMediumValue = 10.0;
