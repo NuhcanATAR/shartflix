@@ -13,12 +13,14 @@ class CustomPasswordFieldWidget extends StatefulWidget {
     required this.hintText,
     required this.onChanged,
     required this.isValidator,
+    this.isHideEye = false,
   });
 
   final TextEditingController passwordController;
   final String hintText;
   final Function(String)? onChanged;
   final bool isValidator;
+  final bool? isHideEye;
 
   @override
   State<CustomPasswordFieldWidget> createState() =>
@@ -88,25 +90,28 @@ class _CustomPasswordFieldWidgetState
         hintText: widget.hintText,
         hintStyle: CustomColorTheme().themeDataSecond.textTheme.bodyMedium!
             .copyWith(color: Colors.grey),
-        suffixIcon: IconButton(
-          onPressed: () {
-            setState(() {
-              isPassObscured = !isPassObscured;
-            });
-          },
-          icon:
-              isPassObscured == true
-                  ? AppIcons.hideOutline.toSvgImg(
-                    Colors.white,
-                    BaseUtility.iconNormalSize,
-                    BaseUtility.iconNormalSize,
-                  )
-                  : AppIcons.hideOutline.toSvgImg(
-                    Colors.white,
-                    BaseUtility.iconNormalSize,
-                    BaseUtility.iconNormalSize,
-                  ),
-        ),
+        suffixIcon:
+            widget.isHideEye == true
+                ? const SizedBox()
+                : IconButton(
+                  onPressed: () {
+                    setState(() {
+                      isPassObscured = !isPassObscured;
+                    });
+                  },
+                  icon:
+                      isPassObscured == true
+                          ? AppIcons.hideOutline.toSvgImg(
+                            Colors.white,
+                            BaseUtility.iconNormalSize,
+                            BaseUtility.iconNormalSize,
+                          )
+                          : AppIcons.hideOutline.toSvgImg(
+                            Colors.white,
+                            BaseUtility.iconNormalSize,
+                            BaseUtility.iconNormalSize,
+                          ),
+                ),
         icon: AppIcons.unlockOutline.toSvgImg(
           Colors.white,
           BaseUtility.iconNormalSize,

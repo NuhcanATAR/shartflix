@@ -1,3 +1,5 @@
+// ignore_for_file: empty_constructor_bodies
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shartflix/feature/authentication/sign_in/bloc/bloc.dart';
@@ -15,7 +17,7 @@ class SignInProvider extends ChangeNotifier {
   Future<void> signIn(BuildContext context, SignInState state) async {
     if (formSignInKey.currentState!.validate()) {
       context.read<SignInBloc>().add(
-        SignInFuncEvent(state.email, state.password),
+        SignInFuncEvent(emailController.text, passwordController.text),
       );
     }
   }
