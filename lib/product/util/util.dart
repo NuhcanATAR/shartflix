@@ -8,6 +8,7 @@ class BaseUtility {
   static const double iconLargeSecondSize = 55.0;
   static const double iconLargeSize = 40.0;
   static const double iconMediumSecondSize = 33.0;
+  static const double iconMediumSecondNormalSize = 26.0;
   static const double iconMediumNormalSize = 24.0;
   static const double iconMediumSize = 18.0;
   static const double iconNormalSize = 16.0;
@@ -55,7 +56,8 @@ class BaseUtility {
   static EdgeInsets all(double padding) => EdgeInsets.all(padding);
 
   // radius sizes
-  static const double radiusHighValue = 20.0;
+  static const double radiusHighValue = 31.0;
+  static const double radiusMediumValue = 20.0;
   static const double radiusNormalValue = 12.0;
   static const double radiusLowValue = 4.0;
 

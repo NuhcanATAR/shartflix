@@ -4,7 +4,9 @@ import 'package:shartflix/feature/profile/bloc/cubit.dart';
 import 'package:shartflix/feature/profile/bloc/state.dart';
 import 'package:shartflix/feature/profile/profile_viewmodel.dart';
 import 'package:shartflix/feature/profile/provider/profile_provider.dart';
+import 'package:shartflix/feature/profile/view/photo_update/photo_update_view.dart';
 import 'package:shartflix/product/constants/icon_constant.dart';
+import 'package:shartflix/product/core/helper/navigator_router.dart';
 import 'package:shartflix/product/theme/light_theme.dart';
 import 'package:shartflix/product/util/util.dart';
 import 'package:shartflix/product/widget/text_widget/body_medium_text.dart';
@@ -141,7 +143,11 @@ class _ProfileViewState extends ProfileViewModel {
           fit: FlexFit.tight,
           flex: 3,
           child: GestureDetector(
-            onTap: () {},
+            onTap:
+                () => CodeNoahNavigatorRouter.pushNamed(
+                  context,
+                  PhotoUpdateView.routePath,
+                ),
             child: Container(
               margin: BaseUtility.horizontal(BaseUtility.paddingSmallValue),
               padding: BaseUtility.all(BaseUtility.paddingMediumValue),
