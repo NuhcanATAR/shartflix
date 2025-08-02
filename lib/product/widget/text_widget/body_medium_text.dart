@@ -43,7 +43,6 @@ class BodyMediumBlackText extends StatelessWidget {
       textAlign: textAlign,
       style: CustomColorTheme().themeData.textTheme.bodyMedium!.copyWith(
         color: Colors.grey,
-        fontWeight: FontWeight.bold,
       ),
     );
   }

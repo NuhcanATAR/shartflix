@@ -17,11 +17,11 @@ enum AppIcons {
   homeOutline('home_outline'),
   profile('profile'),
   pro('pro'),
-  iconlyPro1('iconly_pro1'),
-  iconlyPro2('iconly_pro2'),
-  iconlyPro3('iconly_pro3'),
-  iconlyPro4('iconly_pro4'),
-  addUserOutline('add_user_outline');
+  addUserOutline('add_user_outline'),
+  pro1Icon('pro1_icon'),
+  pro2Icon('pro2_icon'),
+  pro3Icon('pro3_icon'),
+  pro4Icon('pro4_icon');
 
   final String value;
   const AppIcons(this.value);
