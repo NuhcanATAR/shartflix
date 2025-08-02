@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shartflix/product/theme/light_theme.dart';
 
 class BaseUtility {
   BaseUtility._();
@@ -33,6 +34,7 @@ class BaseUtility {
   static const double paddingNormalValue = 16.0;
   static const double paddingMediumValue = 10.0;
   static const double paddingSmallValue = 8.0;
+  static const double paddingLowValue = 3.0;
 
   // margin sizes
   static const double marginHugeValue = 125.0;
@@ -59,10 +61,67 @@ class BaseUtility {
   static const double radiusHighValue = 31.0;
   static const double radiusMediumValue = 20.0;
   static const double radiusNormalValue = 12.0;
-  static const double radiusLowValue = 4.0;
+  static const double radiusLowValue = 8.0;
 
   static const double radiusCircularHighValue = 124;
   static const double radiusCircularNormalValue = 24;
   static const double radiusCircularMediumValue = 18;
   static const double radiusCircularLowValue = 4;
+
+  static const Gradient limitedOfferCardColor = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color(0xFFB00020),
+      Color.fromARGB(255, 10, 10, 10),
+      Color.fromARGB(255, 10, 10, 10),
+      Color(0xFFB00020),
+    ],
+    stops: [0.0, 0.2, 0.8, 1.0],
+  );
+
+  static const Gradient bonusFeatureColor = RadialGradient(
+    center: Alignment.center,
+    radius: 1.0,
+    colors: [Color(0xFFA00000), Colors.red, Color.fromARGB(80, 255, 255, 255)],
+    stops: [
+      0.20, // white
+      0.45, // red
+      1.0, // red
+    ],
+  );
+
+  static Gradient packageCardStandartColor = LinearGradient(
+    begin: Alignment.bottomCenter,
+    end: Alignment.topCenter,
+    colors: [
+      CustomColorTheme().themeData.primaryColor,
+      const Color(0xFF8B0000),
+    ],
+  );
+
+  static const Gradient packageCardStandartHeadColor = RadialGradient(
+    center: Alignment.center,
+    radius: 2.8,
+    colors: [Color(0xFFA00000), Colors.red, Color.fromARGB(80, 255, 255, 255)],
+    stops: [0.20, 0.45, 1.0],
+  );
+
+  static const Gradient packageCardPremiumColor = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xFF5949E6), Color(0xFFE50914)],
+    stops: [0.14, 1.0],
+  );
+
+  static const Gradient packageCardPremiumHeadColor = RadialGradient(
+    center: Alignment.center,
+    radius: 2.5,
+    colors: [
+      Color(0xFF5949E6),
+      Color.fromARGB(255, 145, 133, 255),
+      Color.fromARGB(80, 255, 255, 255),
+    ],
+    stops: [0.20, 0.45, 1.0],
+  );
 }

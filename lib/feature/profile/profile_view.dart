@@ -57,7 +57,11 @@ class _ProfileViewState extends ProfileViewModel {
           text: 'Profil Detayı',
           textAlign: TextAlign.center,
         ),
-        actions: [ProButtonWidget(onTap: () {})],
+        actions: [
+          ProButtonWidget(
+            onTap: () => profileProvider.profileLimitedOffer(context),
+          ),
+        ],
       ),
       body: BlocBuilder<ProfileBloc, ProfileState>(
         builder: (context, state) {
