@@ -27,6 +27,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     on<SignInFuncEvent>(signIn);
   }
 
+  // sign in
   Future<void> signIn(SignInFuncEvent event, Emitter<SignInState> emit) async {
     emit(SignInLoading());
     try {

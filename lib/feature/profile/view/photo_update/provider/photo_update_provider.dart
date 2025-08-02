@@ -15,7 +15,6 @@ class PhotoUpdateProvider extends ChangeNotifier {
 
   Future<void> getUserInformation() async {
     userModel = await ProfileRepository().getUser();
-
     notifyListeners();
   }
 }

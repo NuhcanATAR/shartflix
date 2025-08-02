@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shartflix/feature/navigation_bar/provider/navigation_bar_provider.dart';
 import 'package:shartflix/feature/profile/bloc/cubit.dart';
 import 'package:shartflix/feature/profile/bloc/state.dart';
 import 'package:shartflix/feature/profile/profile_viewmodel.dart';
@@ -27,13 +28,14 @@ class _ProfileViewState extends ProfileViewModel {
   @override
   Widget build(BuildContext context) {
     final profileProvider = context.watch<ProfileProvider>();
+    final navigatorProvider = context.watch<NavigationBarProvider>();
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: dynamicViewExtensions.dynamicHeight(context, 0.1),
         backgroundColor:
             CustomColorTheme().themeDataSecond.scaffoldBackgroundColor,
         leading: IconButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => navigatorProvider.menuSelectPrimary(),
           icon: Container(
             width: 40,
             height: 40,

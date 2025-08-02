@@ -16,6 +16,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<LoadProfile>(_onLoadProfile);
   }
 
+  // user information and favorite movies get
   Future<void> _onLoadProfile(
     LoadProfile event,
     Emitter<ProfileState> emit,

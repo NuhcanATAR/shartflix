@@ -27,7 +27,7 @@ class PhotoUpdateView extends StatefulWidget {
 class _PhotoUpdateViewState extends PhotoUpdateViewModel {
   @override
   Widget build(BuildContext context) {
-    final photoUpdateProvider = context.read<PhotoUpdateProvider>();
+    final photoUpdateProvider = context.watch<PhotoUpdateProvider>();
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: dynamicViewExtensions.dynamicHeight(context, 0.1),
