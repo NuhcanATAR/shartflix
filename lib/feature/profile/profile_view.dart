@@ -97,11 +97,17 @@ class _ProfileViewState extends ProfileViewModel {
           height: dynamicViewExtensions.dynamicWidth(context, 0.16),
           child: Container(
             decoration: BoxDecoration(
-              color:
-                  state.userModel.photoUrl.isEmpty ? Colors.white : Colors.red,
+              color: Colors.white,
               borderRadius: const BorderRadius.all(
                 Radius.circular(BaseUtility.radiusCircularHighValue),
               ),
+              image:
+                  state.userModel.photoUrl.isNotEmpty
+                      ? DecorationImage(
+                        image: NetworkImage(state.userModel.photoUrl),
+                        fit: BoxFit.cover,
+                      )
+                      : null,
             ),
           ),
         ),

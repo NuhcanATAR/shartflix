@@ -1,6 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shartflix/feature/profile/view/photo_update/bloc/cubit.dart';
+import 'package:shartflix/feature/profile/view/photo_update/bloc/event.dart';
+import 'package:shartflix/feature/profile/view/photo_update/bloc/state.dart';
 import 'package:shartflix/feature/profile/view/photo_update/photo_update_viewmodel.dart';
+import 'package:shartflix/feature/profile/view/photo_update/provider/photo_update_provider.dart';
 import 'package:shartflix/product/constants/icon_constant.dart';
+import 'package:shartflix/product/model/user_model/user_model.dart';
 import 'package:shartflix/product/theme/light_theme.dart';
 import 'package:shartflix/product/util/util.dart';
 import 'package:shartflix/product/widget/text_widget/body_medium_text.dart';
@@ -19,6 +27,7 @@ class PhotoUpdateView extends StatefulWidget {
 class _PhotoUpdateViewState extends PhotoUpdateViewModel {
   @override
   Widget build(BuildContext context) {
+    final photoUpdateProvider = context.read<PhotoUpdateProvider>();
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: dynamicViewExtensions.dynamicHeight(context, 0.1),
@@ -50,25 +59,31 @@ class _PhotoUpdateViewState extends PhotoUpdateViewModel {
           textAlign: TextAlign.center,
         ),
       ),
-      body: Padding(
-        padding: BaseUtility.symmetric(
-          BaseUtility.paddingNormalValue,
-          BaseUtility.paddingSmallValue,
-        ),
-        child: Column(
-          children: <Widget>[
-            // body
-            buildBodyWidget,
-            // footer
-            buildFooterWidget,
-          ],
-        ),
+      body: BlocConsumer<PhotoUpdateBloc, PhotoUpdateState>(
+        listener: photoUpdateListener,
+        builder: (context, state) {
+          if (state is PhotoPicking) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          return Column(
+            children: [
+              // body
+              buildBodyWidget(state, photoUpdateProvider.userModel),
+              // footer
+              buildFooterWidget(state),
+            ],
+          );
+        },
       ),
     );
   }
 
   // body
-  Widget get buildBodyWidget => Expanded(
+  Widget buildBodyWidget(
+    PhotoUpdateState state,
+    UserModel userModel,
+  ) => Expanded(
     child: ListView(
       children: <Widget>[
         // title and sub title
@@ -93,25 +108,42 @@ class _PhotoUpdateViewState extends PhotoUpdateViewModel {
           ),
         ),
         // photo select
-        Container(
-          alignment: Alignment.center,
-          margin: BaseUtility.top(BaseUtility.paddingNormalHightValue),
-          child: SizedBox(
-            width: dynamicViewExtensions.dynamicWidth(context, 0.4),
-            height: dynamicViewExtensions.dynamicHeight(context, 0.18),
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.2),
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(BaseUtility.radiusHighValue),
+        GestureDetector(
+          onTap: () async {
+            context.read<PhotoUpdateBloc>().add(PhotoPickImage());
+          },
+          child: Container(
+            alignment: Alignment.center,
+            margin: BaseUtility.top(BaseUtility.paddingNormalHightValue),
+            child: SizedBox(
+              width: dynamicViewExtensions.dynamicWidth(context, 0.4),
+              height: dynamicViewExtensions.dynamicHeight(context, 0.18),
+              child: Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.2),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(BaseUtility.radiusHighValue),
+                  ),
+                  border: Border.all(color: Colors.grey, width: 1.5),
+                  image:
+                      state is PhotoPicked
+                          ? DecorationImage(
+                            image: FileImage(File(state.image.path)),
+                            fit: BoxFit.cover,
+                          )
+                          : userModel.photoUrl.isNotEmpty
+                          ? DecorationImage(
+                            image: NetworkImage(userModel.photoUrl),
+                            fit: BoxFit.cover,
+                          )
+                          : null,
                 ),
-                border: Border.all(color: Colors.grey, width: 1.5),
-              ),
-              child: AppIcons.plus.toSvgImg(
-                Colors.white,
-                BaseUtility.iconMediumSecondNormalSize,
-                BaseUtility.iconMediumSecondNormalSize,
+                child: AppIcons.plus.toSvgImg(
+                  Colors.white,
+                  BaseUtility.iconMediumSecondNormalSize,
+                  BaseUtility.iconMediumSecondNormalSize,
+                ),
               ),
             ),
           ),
@@ -119,10 +151,15 @@ class _PhotoUpdateViewState extends PhotoUpdateViewModel {
       ],
     ),
   );
+
   // footer
-  Widget get buildFooterWidget => CustomButtonWidget(
+  Widget buildFooterWidget(PhotoUpdateState state) => CustomButtonWidget(
     dynamicViewExtensions: dynamicViewExtensions,
-    onTap: () {},
+    onTap: () {
+      if (state is PhotoPicked) {
+        context.read<PhotoUpdateBloc>().add(UploadPhoto(state.image));
+      }
+    },
     btnText: 'Devam Et',
   );
 }
