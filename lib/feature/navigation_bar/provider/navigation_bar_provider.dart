@@ -92,6 +92,7 @@ class NavigationBarProvider extends ChangeNotifier {
   // exit account
   Future<void> exitAccount(BuildContext context) async {
     await storage.delete(key: 'auth_token');
+    selectView = 0;
     if (!context.mounted) return;
     CodeNoahNavigatorRouter.pushNamedAndRemoveUntil(
       context,

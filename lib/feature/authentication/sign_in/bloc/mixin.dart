@@ -31,6 +31,9 @@ mixin SignInMixin {
           );
         }
 
+        context.read<SignInProvider>().emailController.clear();
+        context.read<SignInProvider>().passwordController.clear();
+
         break;
       case SignInError:
         Navigator.pop(context);
