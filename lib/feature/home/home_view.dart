@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shartflix/feature/home/bloc/bloc.dart';
+import 'package:shartflix/feature/home/bloc/event.dart';
+import 'package:shartflix/feature/home/bloc/state.dart';
 import 'package:shartflix/feature/home/home_viewmodel.dart';
 import 'package:shartflix/feature/home/provider/home_provider.dart';
 import 'package:shartflix/product/constants/icon_constant.dart';
@@ -13,6 +16,9 @@ import 'package:shartflix/product/widget/widget/movie_cover.dart';
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
+  static String routeName = 'home';
+  static String routePath = '/home';
+
   @override
   State<HomeView> createState() => _HomeViewState();
 }
@@ -20,139 +26,133 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends HomeViewModel {
   @override
   Widget build(BuildContext context) {
-    final homeProvider = context.watch<HomeProvider>();
-    return buildBodyWidget(homeProvider);
-  }
+    final homeProvider = context.read<HomeProvider>();
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        if (state is HomeLoading || state is HomeInitial) {
+          return const Center(child: CircularProgressIndicator());
+        }
 
-  // body
-  Widget buildBodyWidget(HomeProvider homeProvider) =>
-      homeProvider.isLoading &&
-              (homeProvider.movieData == null ||
-                  homeProvider.movieData!.movies.isEmpty)
-          ? const Center(child: CircularProgressIndicator())
-          : RefreshIndicator(
-            onRefresh: homeProvider.onRefresh,
+        if (state is HomeError) {
+          return const Center(child: Text("Error"));
+        }
+
+        if (state is HomeLoaded) {
+          final movies = state.movies.movies;
+          final favoriteIds = state.favoriteMovieIds;
+
+          return RefreshIndicator(
+            onRefresh: () async {
+              context.read<HomeBloc>().add(const HomeRefreshMovies());
+            },
             child: PageView.builder(
-              controller: homeProvider.pageController,
+              controller: pageController,
               scrollDirection: Axis.vertical,
-              itemCount:
-                  homeProvider.movieData!.movies.length +
-                  (homeProvider.isLoadingMore ? 1 : 0),
+              itemCount: movies.length + 1,
               itemBuilder: (context, index) {
-                if (index == homeProvider.movieData!.movies.length) {
-                  return const Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(16),
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
+                if (index == movies.length) {
+                  return const Center(child: CircularProgressIndicator());
                 }
 
-                final movie = homeProvider.movieData!.movies[index];
+                final movie = movies[index];
 
                 return Stack(
                   children: [
-                    // cover image
-                    buildCoverImageWidget(homeProvider, movie),
-                    // footer
-                    buildFooterWidget(homeProvider, movie),
+                    MovieCover(
+                      imgUrl: homeProvider.fixPosterUrl(movie.poster ?? ''),
+                    ),
+                    _buildFooter(context, movie, favoriteIds),
                   ],
                 );
               },
             ),
           );
+        }
 
-  // cover image
-  Widget buildCoverImageWidget(HomeProvider homeProvider, Movie movie) =>
-      MovieCover(imgUrl: homeProvider.fixPosterUrl(movie.poster));
-
-  // footer
-  Widget buildFooterWidget(HomeProvider homeProvider, Movie movie) => Padding(
-    padding: BaseUtility.symmetric(
-      BaseUtility.paddingSmallValue,
-      BaseUtility.paddingNormalValue,
-    ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        // favorite button
-        buildFavoriteButtonWidget(homeProvider, movie),
-        // title and sub title
-        buildTitleAndSubTitleWidget(movie),
-      ],
-    ),
-  );
-
-  // favorite button
-  Widget buildFavoriteButtonWidget(
-    HomeProvider homeProvider,
-    Movie movie,
-  ) => Container(
-    margin: BaseUtility.bottom(BaseUtility.marginMediumValue),
-    alignment: Alignment.centerRight,
-    child: FavoriteButtonWidget(
-      onTap: () async {
-        await homeProvider.toggleFavoriteAndRefresh(context, movie.id ?? '');
+        return const SizedBox();
       },
-      color:
-          homeProvider.isFavorite(movie.id ?? '') ? Colors.red : Colors.white,
-    ),
-  );
+    );
+  }
 
-  // title and sub title
-  Widget buildTitleAndSubTitleWidget(Movie movie) => Padding(
-    padding: BaseUtility.top(BaseUtility.paddingNormalValue),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        SizedBox(
-          width: 40,
-          height: 40,
-          child: Container(
-            padding: BaseUtility.all(BaseUtility.paddingSmallValue),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary,
-              border: Border.all(color: Colors.white, width: 1.5),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(BaseUtility.radiusCircularHighValue),
-              ),
-            ),
-            child: AppIcons.accountIcon.toSvgImg(
-              Colors.white,
-              BaseUtility.iconNormalSize,
-              BaseUtility.iconNormalSize,
+  Widget _buildFooter(
+    BuildContext context,
+    Movie movie,
+    List<String> favoriteIds,
+  ) {
+    final isFavorite = favoriteIds.contains(movie.id);
+
+    return Padding(
+      padding: BaseUtility.symmetric(
+        BaseUtility.paddingSmallValue,
+        BaseUtility.paddingNormalValue,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+            alignment: Alignment.centerRight,
+            margin: BaseUtility.bottom(BaseUtility.marginMediumValue),
+            child: FavoriteButtonWidget(
+              onTap: () {
+                context.read<HomeBloc>().add(
+                  HomeToggleFavorite(movie.id ?? ''),
+                );
+              },
+              color: isFavorite ? Colors.red : Colors.white,
             ),
           ),
-        ),
-        Expanded(
-          child: Padding(
-            padding: BaseUtility.left(BaseUtility.paddingNormalValue),
-            child: Column(
+          Padding(
+            padding: BaseUtility.top(BaseUtility.paddingNormalValue),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 SizedBox(
-                  width: dynamicViewExtensions.maxWidth(context),
-                  child: BodyMediumWhiteBoldText(
-                    text: movie.title ?? '',
-                    textAlign: TextAlign.left,
+                  width: 40,
+                  height: 40,
+                  child: Container(
+                    padding: BaseUtility.all(BaseUtility.paddingSmallValue),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primary,
+                      border: Border.all(color: Colors.white, width: 1.5),
+                      borderRadius: BorderRadius.circular(
+                        BaseUtility.radiusCircularHighValue,
+                      ),
+                    ),
+                    child: AppIcons.accountIcon.toSvgImg(
+                      Colors.white,
+                      BaseUtility.iconNormalSize,
+                      BaseUtility.iconNormalSize,
+                    ),
                   ),
                 ),
-                SizedBox(
-                  width: dynamicViewExtensions.maxWidth(context),
+                Expanded(
                   child: Padding(
-                    padding: BaseUtility.bottom(BaseUtility.paddingSmallValue),
-                    child: ExpandedLabelText(
-                      text: movie.plot ?? '',
-                      wordLimit: 9,
+                    padding: BaseUtility.left(BaseUtility.paddingNormalValue),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        BodyMediumWhiteBoldText(
+                          text: movie.title ?? '',
+                          textAlign: TextAlign.left,
+                        ),
+                        Padding(
+                          padding: BaseUtility.bottom(
+                            BaseUtility.paddingSmallValue,
+                          ),
+                          child: ExpandedLabelText(
+                            text: movie.plot ?? '',
+                            wordLimit: 9,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ],
             ),
           ),
-        ),
-      ],
-    ),
-  );
+        ],
+      ),
+    );
+  }
 }

@@ -23,6 +23,10 @@ class EndPoint {
   static const String favoriteMovieEndPoint =
       "${ApiService.https}://${ApiService.server}/movie/favorites";
 
+  // user profile
+  static const String userProfileEndPoint =
+      "${ApiService.https}://${ApiService.server}/user/profile";
+
   // endpoint uri parse function
   static Uri uriParse(String endPoint) {
     return Uri.parse(endPoint);
