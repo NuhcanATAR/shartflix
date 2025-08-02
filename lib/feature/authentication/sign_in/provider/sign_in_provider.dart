@@ -12,6 +12,8 @@ class SignInProvider extends ChangeNotifier {
   late TextEditingController emailController = TextEditingController();
   late TextEditingController passwordController = TextEditingController();
 
+  late bool isPhotoUpdateControl = false;
+
   SignInProvider() {}
 
   Future<void> signIn(BuildContext context, SignInState state) async {
@@ -20,5 +22,10 @@ class SignInProvider extends ChangeNotifier {
         SignInFuncEvent(emailController.text, passwordController.text),
       );
     }
+  }
+
+  void photoUpdateControl() {
+    isPhotoUpdateControl = true;
+    notifyListeners();
   }
 }

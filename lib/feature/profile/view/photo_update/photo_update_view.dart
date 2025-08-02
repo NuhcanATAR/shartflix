@@ -2,12 +2,15 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shartflix/feature/authentication/sign_in/provider/sign_in_provider.dart';
+import 'package:shartflix/feature/navigation_bar/navigation_bar_view.dart';
 import 'package:shartflix/feature/profile/view/photo_update/bloc/cubit.dart';
 import 'package:shartflix/feature/profile/view/photo_update/bloc/event.dart';
 import 'package:shartflix/feature/profile/view/photo_update/bloc/state.dart';
 import 'package:shartflix/feature/profile/view/photo_update/photo_update_viewmodel.dart';
 import 'package:shartflix/feature/profile/view/photo_update/provider/photo_update_provider.dart';
 import 'package:shartflix/product/constants/icon_constant.dart';
+import 'package:shartflix/product/core/helper/navigator_router.dart';
 import 'package:shartflix/product/model/user_model/user_model.dart';
 import 'package:shartflix/product/theme/light_theme.dart';
 import 'package:shartflix/product/util/util.dart';
@@ -28,13 +31,21 @@ class _PhotoUpdateViewState extends PhotoUpdateViewModel {
   @override
   Widget build(BuildContext context) {
     final photoUpdateProvider = context.watch<PhotoUpdateProvider>();
+    final signInProvider = context.read<SignInProvider>();
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: dynamicViewExtensions.dynamicHeight(context, 0.1),
         backgroundColor:
             CustomColorTheme().themeDataSecond.scaffoldBackgroundColor,
         leading: IconButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed:
+              () =>
+                  signInProvider.isPhotoUpdateControl == true
+                      ? CodeNoahNavigatorRouter.pushNamedAndRemoveUntil(
+                        context,
+                        NavigationBarView.routePath,
+                      )
+                      : Navigator.pop(context),
           icon: Container(
             width: 40,
             height: 40,
@@ -82,7 +93,7 @@ class _PhotoUpdateViewState extends PhotoUpdateViewModel {
   // body
   Widget buildBodyWidget(
     PhotoUpdateState state,
-    UserModel userModel,
+    ProfileModel userModel,
   ) => Expanded(
     child: ListView(
       children: <Widget>[
