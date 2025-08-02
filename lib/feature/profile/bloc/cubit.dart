@@ -16,6 +16,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<LoadProfile>(_onLoadProfile);
   }
 
+  // user information and favorite movies get
   Future<void> _onLoadProfile(
     LoadProfile event,
     Emitter<ProfileState> emit,
@@ -24,7 +25,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     try {
       final List<Movie> movieList =
           await ProfileRepository().getFavoriteMovie();
-      final UserModel userModel = await ProfileRepository().getUser();
+      final ProfileModel userModel = await ProfileRepository().getUser();
       emit(ProfileLoaded(movieList, userModel));
     } catch (e) {
       emit(ProfileError('Hata Oluştu'));

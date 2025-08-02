@@ -57,7 +57,7 @@ class ProfileRepository {
   }
 
   // user information
-  Future<UserModel> getUser() async {
+  Future<ProfileModel> getUser() async {
     try {
       const storage = FlutterSecureStorage();
       final token = await storage.read(key: 'auth_token');
@@ -72,14 +72,14 @@ class ProfileRepository {
         final data = json['data'];
 
         if (data != null) {
-          return UserModel.fromJson(data);
+          return ProfileModel.fromJson(data);
         }
       }
 
-      return UserModel(id: '', name: '', email: '', photoUrl: '');
+      return ProfileModel(id: '', name: '', email: '', photoUrl: '');
     } catch (e) {
       loggerPrint.printErrorLog(e.toString());
-      return UserModel(id: '', name: '', email: '', photoUrl: '');
+      return ProfileModel(id: '', name: '', email: '', photoUrl: '');
     }
   }
 

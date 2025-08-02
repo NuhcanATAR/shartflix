@@ -3,7 +3,7 @@ import 'package:shartflix/product/core/repository/profile_repository/profile_rep
 import 'package:shartflix/product/model/user_model/user_model.dart';
 
 class PhotoUpdateProvider extends ChangeNotifier {
-  late UserModel userModel = UserModel(
+  late ProfileModel userModel = ProfileModel(
     id: '',
     name: '',
     email: '',
@@ -15,7 +15,6 @@ class PhotoUpdateProvider extends ChangeNotifier {
 
   Future<void> getUserInformation() async {
     userModel = await ProfileRepository().getUser();
-
     notifyListeners();
   }
 }

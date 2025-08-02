@@ -13,7 +13,7 @@ class ProfileLoading extends ProfileState {}
 
 class ProfileLoaded extends ProfileState {
   final List<Movie> movie;
-  final UserModel userModel;
+  final ProfileModel userModel;
 
   ProfileLoaded(this.movie, this.userModel);
 

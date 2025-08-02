@@ -25,6 +25,7 @@ class PhotoUpdateBloc extends Bloc<PhotoUpdateEvent, PhotoUpdateState> {
     on<UploadPhoto>(_onUploadPhoto);
   }
 
+  // image compression
   Future<File> _compressImage(File file) async {
     final dir = await getTemporaryDirectory();
     final targetPath = path.join(
@@ -46,6 +47,7 @@ class PhotoUpdateBloc extends Bloc<PhotoUpdateEvent, PhotoUpdateState> {
     return compressedFile;
   }
 
+  // select image
   Future<void> _onPickImage(
     PhotoPickImage event,
     Emitter<PhotoUpdateState> emit,
@@ -68,6 +70,7 @@ class PhotoUpdateBloc extends Bloc<PhotoUpdateEvent, PhotoUpdateState> {
     }
   }
 
+  // upload photo
   Future<void> _onUploadPhoto(
     UploadPhoto event,
     Emitter<PhotoUpdateState> emit,

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:shartflix/product/model/user_model/user_model.dart';
 
 class SignInState extends Equatable {
   final String email;
@@ -21,6 +22,13 @@ class SignInInitial extends SignInState {}
 
 class SignInLoading extends SignInState {}
 
-class SignInSuccess extends SignInState {}
+class SignInSuccess extends SignInState {
+  final ProfileModel userModel;
+
+  const SignInSuccess(this.userModel);
+
+  @override
+  List<Object> get props => [userModel];
+}
 
 class SignInError extends SignInState {}

@@ -30,6 +30,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     on<SignUpFuncEvent>(signUp);
   }
 
+  // sign up
   Future<void> signUp(SignUpFuncEvent event, Emitter<SignUpState> emit) async {
     emit(SignUpLoading());
 
