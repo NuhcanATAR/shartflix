@@ -1,3 +1,5 @@
+// ignore_for_file: empty_constructor_bodies
+
 import 'package:flutter/material.dart';
 
 class ProfileProvider extends ChangeNotifier {
@@ -5,9 +7,6 @@ class ProfileProvider extends ChangeNotifier {
 
   String fixPosterUrl(String? url) {
     if (url == null || url.isEmpty) return '';
-    if (url.startsWith('http://')) {
-      return url.replaceFirst('http://', 'https://');
-    }
-    return url;
+    return url.replaceFirst(RegExp(r'^http:'), 'https:');
   }
 }

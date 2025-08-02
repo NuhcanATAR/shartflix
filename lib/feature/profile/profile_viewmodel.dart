@@ -8,7 +8,6 @@ abstract class ProfileViewModel extends BaseState<ProfileView> {
   @override
   void initState() {
     super.initState();
-
     context.read<ProfileBloc>().add(LoadProfile());
   }
 }
