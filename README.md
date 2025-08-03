@@ -1,16 +1,19 @@
-# shartflix
-
-Shartflix (Movie App)
-
+# Shartflix (Movie App) & Flutter Developer · Case Study
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+## Branch Information
 
-A few resources to get you started if this is your first Flutter project:
+```command
+feature/CN-1 : Login
+feature/CN-2 : Register
+feature/CN-3 : Home (discover)
+feature/CN-4 : Profile
+feature/CN-5 : Firebase Crashlytics, Analytics integration
+feature/CN-6 : Localization
+feature/CN-7 : Animation additions
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+bugfix/CN-1 : improvements have been made
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<b>Nuhcan ATAR</b><br>
+<i>Mobile Application Developer</i>
