@@ -6,6 +6,7 @@ import 'package:shartflix/feature/authentication/sign_in/bloc/state.dart';
 import 'package:shartflix/feature/authentication/sign_in/provider/sign_in_provider.dart';
 import 'package:shartflix/feature/authentication/sign_in/sign_in_viewmodel.dart';
 import 'package:shartflix/feature/authentication/sign_up/sign_up_view.dart';
+import 'package:shartflix/lang/app_localizations.dart';
 import 'package:shartflix/product/constants/icon_constant.dart';
 import 'package:shartflix/product/core/helper/navigator_router.dart';
 import 'package:shartflix/product/theme/light_theme.dart';
@@ -89,17 +90,16 @@ class _SignInViewState extends SignInViewModel {
         // title
         Padding(
           padding: BaseUtility.top(BaseUtility.paddingMediumValue),
-          child: const TitleMediumWhiteBoldText(
-            text: 'Merhabalar',
+          child: TitleMediumWhiteBoldText(
+            text: AppLocalizations.of(context)!.sign_in_title,
             textAlign: TextAlign.center,
           ),
         ),
         // sub title
         Padding(
           padding: BaseUtility.top(BaseUtility.paddingMediumValue),
-          child: const BodyMediumWhiteText(
-            text:
-                'Tempus varius a vitae interdum id\ntortor elementum tristique eleifend at.',
+          child: BodyMediumWhiteText(
+            text: AppLocalizations.of(context)!.sign_in_sub_title,
             textAlign: TextAlign.center,
           ),
         ),
@@ -118,7 +118,7 @@ class _SignInViewState extends SignInViewModel {
         padding: BaseUtility.bottom(BaseUtility.paddingNormalValue),
         child: CustomEmailFieldWidget(
           emailController: signInProvider.emailController,
-          placeHolderText: 'E-posta',
+          placeHolderText: AppLocalizations.of(context)!.sign_in_email_field,
           onChanged: (String val) {
             context.read<SignInBloc>().add(SignInEmailEvent(val));
           },
@@ -129,7 +129,7 @@ class _SignInViewState extends SignInViewModel {
         padding: BaseUtility.bottom(BaseUtility.paddingNormalValue),
         child: CustomPasswordFieldWidget(
           passwordController: signInProvider.passwordController,
-          hintText: 'Şifre',
+          hintText: AppLocalizations.of(context)!.sign_in_password_field,
           onChanged: (String val) {
             context.read<SignInBloc>().add(SignInPasswordEvent(val));
           },
@@ -143,7 +143,7 @@ class _SignInViewState extends SignInViewModel {
   Padding get buildForgotPasswordWidget => Padding(
     padding: BaseUtility.vertical(BaseUtility.paddingNormalValue),
     child: Text(
-      'Şifremi Unuttum',
+      AppLocalizations.of(context)!.sign_in_forgot_password,
       textAlign: TextAlign.left,
       style: CustomColorTheme().themeDataSecond.textTheme.bodyMedium!.copyWith(
         color: Colors.white,
@@ -161,7 +161,7 @@ class _SignInViewState extends SignInViewModel {
     child: CustomButtonWidget(
       dynamicViewExtensions: dynamicViewExtensions,
       onTap: () => signInProvider.signIn(context, state),
-      btnText: 'Giriş Yap',
+      btnText: AppLocalizations.of(context)!.sign_in_button,
     ),
   );
 
@@ -200,11 +200,11 @@ class _SignInViewState extends SignInViewModel {
     child: Row(
       children: <Widget>[
         const Spacer(),
-        const Flexible(
+        Flexible(
           fit: FlexFit.tight,
           flex: 2,
           child: BodyMediumBlackText(
-            text: 'Bir hesabın yok mu?',
+            text: AppLocalizations.of(context)!.sign_in_register_title,
             textAlign: TextAlign.right,
           ),
         ),
@@ -219,8 +219,8 @@ class _SignInViewState extends SignInViewModel {
                 ),
             child: Padding(
               padding: BaseUtility.left(BaseUtility.paddingSmallValue),
-              child: const BodyMediumWhiteBoldText(
-                text: 'Kayıt Ol!',
+              child: BodyMediumWhiteBoldText(
+                text: AppLocalizations.of(context)!.sign_in_register,
                 textAlign: TextAlign.left,
               ),
             ),

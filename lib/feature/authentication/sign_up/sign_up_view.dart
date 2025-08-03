@@ -6,6 +6,7 @@ import 'package:shartflix/feature/authentication/sign_up/bloc/event.dart';
 import 'package:shartflix/feature/authentication/sign_up/bloc/state.dart';
 import 'package:shartflix/feature/authentication/sign_up/provider/sign_up_provider.dart';
 import 'package:shartflix/feature/authentication/sign_up/sign_up_viewmodel.dart';
+import 'package:shartflix/lang/app_localizations.dart';
 import 'package:shartflix/product/constants/icon_constant.dart';
 import 'package:shartflix/product/core/helper/navigator_router.dart';
 import 'package:shartflix/product/theme/light_theme.dart';
@@ -54,8 +55,8 @@ class _SignUpViewState extends SignUpViewModel {
                         buildTitleAndSubTitleWidget,
                         // email and password
                         buildEmailPasswordFieldWidget(signUpProvider, state),
-                        // forgot password
-                        buildForgotPasswordWidget,
+                        // agreement
+                        buildAgreementWidget,
                         // sign up button
                         buildSignUpButtonWidget(signUpProvider),
                         // other sign up
@@ -82,17 +83,16 @@ class _SignUpViewState extends SignUpViewModel {
         // title
         Padding(
           padding: BaseUtility.top(BaseUtility.paddingMediumValue),
-          child: const TitleMediumWhiteBoldText(
-            text: 'Hoşgeldiniz',
+          child: TitleMediumWhiteBoldText(
+            text: AppLocalizations.of(context)!.sign_up_title,
             textAlign: TextAlign.center,
           ),
         ),
         // sub title
         Padding(
           padding: BaseUtility.top(BaseUtility.paddingMediumValue),
-          child: const BodyMediumWhiteText(
-            text:
-                'Tempus varius a vitae interdum id tortor elementum tristique eleifend at.',
+          child: BodyMediumWhiteText(
+            text: AppLocalizations.of(context)!.sign_up_sub_title,
             textAlign: TextAlign.center,
           ),
         ),
@@ -111,7 +111,7 @@ class _SignUpViewState extends SignUpViewModel {
         padding: BaseUtility.bottom(BaseUtility.paddingNormalValue),
         child: NormalTextFieldWidget(
           controller: signUpProvider.nameSurnameController,
-          placeHolderText: 'Ad Soyad',
+          placeHolderText: AppLocalizations.of(context)!.sign_up_name_field,
           onChanged: (String val) {
             context.read<SignUpBloc>().add(SignUpNameSurnameEvent(val));
           },
@@ -126,7 +126,7 @@ class _SignUpViewState extends SignUpViewModel {
         padding: BaseUtility.bottom(BaseUtility.paddingNormalValue),
         child: CustomEmailFieldWidget(
           emailController: signUpProvider.emailController,
-          placeHolderText: 'E-posta',
+          placeHolderText: AppLocalizations.of(context)!.sign_up_email_field,
           onChanged: (String val) {
             context.read<SignUpBloc>().add(SignUpEmailEvent(val));
           },
@@ -137,7 +137,7 @@ class _SignUpViewState extends SignUpViewModel {
         padding: BaseUtility.bottom(BaseUtility.paddingNormalValue),
         child: CustomPasswordFieldWidget(
           passwordController: signUpProvider.passwordController,
-          hintText: 'Şifre',
+          hintText: AppLocalizations.of(context)!.sign_up_password_field,
           onChanged: (String val) {
             context.read<SignUpBloc>().add(SignUpPasswordEvent(val));
           },
@@ -149,7 +149,7 @@ class _SignUpViewState extends SignUpViewModel {
         padding: BaseUtility.bottom(BaseUtility.paddingNormalValue),
         child: CustomPasswordFieldWidget(
           passwordController: signUpProvider.repeadPasswordController,
-          hintText: 'Şifre Tekrar',
+          hintText: AppLocalizations.of(context)!.sign_up_password_repead_field,
           onChanged: (String val) {},
           isValidator: true,
           isHideEye: true,
@@ -158,19 +158,20 @@ class _SignUpViewState extends SignUpViewModel {
     ],
   );
 
-  // forgot password
-  Padding get buildForgotPasswordWidget => Padding(
+  // agreement
+  Padding get buildAgreementWidget => Padding(
     padding: BaseUtility.vertical(BaseUtility.paddingNormalValue),
     child: Text.rich(
       TextSpan(
         children: [
           TextSpan(
-            text: 'Kullanıcı sözleşmesini ',
+            text:
+                '${AppLocalizations.of(context)!.sign_up_agreement_title_one} ',
             style: CustomColorTheme().themeDataSecond.textTheme.bodyMedium!
                 .copyWith(color: Colors.grey),
           ),
           TextSpan(
-            text: 'okudum ve kabul ediyorum',
+            text: AppLocalizations.of(context)!.sign_up_agreement_title_second,
             style: CustomColorTheme().themeDataSecond.textTheme.bodyMedium!
                 .copyWith(
                   color: Colors.white,
@@ -178,7 +179,8 @@ class _SignUpViewState extends SignUpViewModel {
                 ),
           ),
           TextSpan(
-            text: '. Bu sözleşmeyi okuyarak devam ediniz lütfen.',
+            text:
+                '. ${AppLocalizations.of(context)!.sign_up_agreement_title_three}',
             style: CustomColorTheme().themeDataSecond.textTheme.bodyMedium!
                 .copyWith(color: Colors.grey),
           ),
@@ -196,7 +198,7 @@ class _SignUpViewState extends SignUpViewModel {
       onTap: () {
         signUpProvider.signUp(context);
       },
-      btnText: 'Şimdi Kaydol',
+      btnText: AppLocalizations.of(context)!.sign_up_button,
     ),
   );
 
@@ -235,11 +237,11 @@ class _SignUpViewState extends SignUpViewModel {
     child: Row(
       children: <Widget>[
         const Spacer(),
-        const Flexible(
+        Flexible(
           fit: FlexFit.tight,
           flex: 4,
           child: BodyMediumBlackText(
-            text: 'Zaten bir hesabın var mı?',
+            text: AppLocalizations.of(context)!.sign_up_login_title,
             textAlign: TextAlign.right,
           ),
         ),
@@ -254,8 +256,8 @@ class _SignUpViewState extends SignUpViewModel {
                 ),
             child: Padding(
               padding: BaseUtility.left(BaseUtility.paddingSmallValue),
-              child: const BodyMediumWhiteBoldText(
-                text: 'Giriş Yap!',
+              child: BodyMediumWhiteBoldText(
+                text: AppLocalizations.of(context)!.sign_up_login,
                 textAlign: TextAlign.left,
               ),
             ),

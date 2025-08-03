@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shartflix/feature/navigation_bar/navigation_bar_viewmodel.dart';
 import 'package:shartflix/feature/navigation_bar/provider/navigation_bar_provider.dart';
+import 'package:shartflix/lang/app_localizations.dart';
 import 'package:shartflix/product/constants/icon_constant.dart';
 import 'package:shartflix/product/util/util.dart';
 import 'package:shartflix/product/widget/text_widget/body_medium_text.dart';
@@ -53,8 +54,11 @@ class _NavigationBarViewState extends NavigationBarViewModel {
                         padding: BaseUtility.left(
                           BaseUtility.paddingSmallValue,
                         ),
-                        child: const BodyMediumWhiteText(
-                          text: 'Anasayfa',
+                        child: BodyMediumWhiteText(
+                          text:
+                              AppLocalizations.of(
+                                context,
+                              )!.navigation_bar_menu_one,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -84,8 +88,11 @@ class _NavigationBarViewState extends NavigationBarViewModel {
                         padding: BaseUtility.left(
                           BaseUtility.paddingSmallValue,
                         ),
-                        child: const BodyMediumWhiteText(
-                          text: 'Profil',
+                        child: BodyMediumWhiteText(
+                          text:
+                              AppLocalizations.of(
+                                context,
+                              )!.navigation_bar_menu_second,
                           textAlign: TextAlign.center,
                         ),
                       ),

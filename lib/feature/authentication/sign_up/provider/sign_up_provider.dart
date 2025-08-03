@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shartflix/feature/authentication/sign_up/bloc/cubit.dart';
 import 'package:shartflix/feature/authentication/sign_up/bloc/event.dart';
+import 'package:shartflix/lang/app_localizations.dart';
 import 'package:shartflix/product/core/helper/show_dialogs.dart';
 
 class SignUpProvider extends ChangeNotifier {
@@ -29,7 +30,7 @@ class SignUpProvider extends ChangeNotifier {
       } else {
         await CodeNoahDialogs(context).showFlush(
           type: SnackType.error,
-          message: 'Şifreler Uyuşmuyor lütfen şifrelerinizi kontrol ediniz.',
+          message: AppLocalizations.of(context)!.sign_up_password_error,
         );
       }
     }

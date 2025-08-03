@@ -6,6 +6,7 @@ import 'package:shartflix/feature/authentication/sign_in/bloc/state.dart';
 import 'package:shartflix/feature/authentication/sign_in/provider/sign_in_provider.dart';
 import 'package:shartflix/feature/navigation_bar/navigation_bar_view.dart';
 import 'package:shartflix/feature/profile/view/photo_update/photo_update_view.dart';
+import 'package:shartflix/lang/app_localizations.dart';
 import 'package:shartflix/product/core/helper/navigator_router.dart';
 import 'package:shartflix/product/core/helper/show_dialogs.dart';
 import 'package:shartflix/product/widget/text_widget/body_medium_text.dart';
@@ -39,13 +40,13 @@ mixin SignInMixin {
         Navigator.pop(context);
         CodeNoahDialogs(context).showFlush(
           type: SnackType.error,
-          message: 'Hata oluştu, bilgilerinizi kontrol ediniz!',
+          message: AppLocalizations.of(context)!.sign_in_error,
         );
         break;
       case SignInLoading:
         CodeNoahDialogs(context).showAlert(
-          const BodyMediumWhiteBoldText(
-            text: 'Lütfen Bekleyiniz...',
+          BodyMediumWhiteBoldText(
+            text: AppLocalizations.of(context)!.sign_in_loading,
             textAlign: TextAlign.center,
           ),
         );

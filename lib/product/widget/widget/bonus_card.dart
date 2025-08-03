@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shartflix/lang/app_localizations.dart';
 import 'package:shartflix/product/constants/icon_constant.dart';
 import 'package:shartflix/product/util/util.dart';
 import 'package:shartflix/product/widget/text_widget/body_medium_text.dart';
@@ -25,9 +26,9 @@ class BonusCardWidget extends StatelessWidget {
         child: Column(
           children: <Widget>[
             // title
-            buildTitleWidget,
+            buildTitleWidget(context),
             // list
-            buildListWidget,
+            buildListWidget(context),
           ],
         ),
       ),
@@ -35,16 +36,16 @@ class BonusCardWidget extends StatelessWidget {
   }
 
   // title
-  Widget get buildTitleWidget => Padding(
+  Widget buildTitleWidget(BuildContext context) => Padding(
     padding: BaseUtility.bottom(BaseUtility.paddingNormalValue),
-    child: const BodyMediumWhiteBoldText(
-      text: 'Alacağınız Bonuslar',
+    child: BodyMediumWhiteBoldText(
+      text: AppLocalizations.of(context)!.bonus_card_title,
       textAlign: TextAlign.center,
     ),
   );
 
   // list
-  Widget get buildListWidget => Row(
+  Widget buildListWidget(BuildContext context) => Row(
     children: <Widget>[
       Flexible(
         fit: FlexFit.tight,
@@ -72,8 +73,8 @@ class BonusCardWidget extends StatelessWidget {
               // label
               Padding(
                 padding: BaseUtility.top(BaseUtility.paddingMediumValue),
-                child: const LabelMediumWhiteText(
-                  text: 'Permium\nHesap\n',
+                child: LabelMediumWhiteText(
+                  text: AppLocalizations.of(context)!.bonus_card_pro_one_label,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -108,8 +109,9 @@ class BonusCardWidget extends StatelessWidget {
               // label
               Padding(
                 padding: BaseUtility.top(BaseUtility.paddingMediumValue),
-                child: const LabelMediumWhiteText(
-                  text: 'Daha\nFazla Eşleşme',
+                child: LabelMediumWhiteText(
+                  text:
+                      AppLocalizations.of(context)!.bonus_card_pro_second_label,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -144,8 +146,9 @@ class BonusCardWidget extends StatelessWidget {
               // label
               Padding(
                 padding: BaseUtility.top(BaseUtility.paddingMediumValue),
-                child: const LabelMediumWhiteText(
-                  text: 'Öne\nÇıkarma\n',
+                child: LabelMediumWhiteText(
+                  text:
+                      AppLocalizations.of(context)!.bonus_card_pro_three_label,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -180,8 +183,8 @@ class BonusCardWidget extends StatelessWidget {
               // label
               Padding(
                 padding: BaseUtility.top(BaseUtility.paddingMediumValue),
-                child: const LabelMediumWhiteText(
-                  text: 'Daha\nFazla Beğeni',
+                child: LabelMediumWhiteText(
+                  text: AppLocalizations.of(context)!.bonus_card_pro_four_label,
                   textAlign: TextAlign.center,
                 ),
               ),

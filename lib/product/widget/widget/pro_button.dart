@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shartflix/lang/app_localizations.dart';
 import 'package:shartflix/product/constants/icon_constant.dart';
 import 'package:shartflix/product/theme/light_theme.dart';
 import 'package:shartflix/product/util/util.dart';
@@ -31,8 +32,8 @@ class ProButtonWidget extends StatelessWidget {
             ),
             Padding(
               padding: BaseUtility.horizontal(BaseUtility.paddingMediumValue),
-              child: const BodyMediumWhiteBoldText(
-                text: 'Sınırlı Teklif',
+              child: BodyMediumWhiteBoldText(
+                text: AppLocalizations.of(context)!.pro_button_text,
                 textAlign: TextAlign.left,
               ),
             ),

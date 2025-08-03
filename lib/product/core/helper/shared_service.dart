@@ -4,14 +4,14 @@ import 'package:shartflix/product/core/helper/shared_keys.dart';
 class PrefService {
   final prefs = SharedPreferences.getInstance();
 
-  Future<void> saveString(SharedKeys key, String value) async {
+  Future<void> saveString(String key, String value) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(key.name, value);
+    await prefs.setString(key, value);
   }
 
-  Future<String?> getString(SharedKeys key) async {
+  Future<String?> getString(String key) async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(key.name);
+    return prefs.getString(key);
   }
 
   Future<void> remove(SharedKeys key) async {

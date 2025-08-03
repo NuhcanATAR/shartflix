@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:shartflix/lang/app_localizations.dart';
 import 'package:shartflix/product/core/base/base_state.dart';
 import 'package:shartflix/product/util/util.dart';
 import 'package:shartflix/product/widget/text_widget/body_medium_text.dart';
@@ -89,15 +90,14 @@ class _LimitedOfferWidgetState extends BaseState<LimitedOfferWidget> {
         // title
         Padding(
           padding: BaseUtility.bottom(BaseUtility.paddingSmallValue),
-          child: const TitleMediumWhiteBoldText(
-            text: 'Sınırlı Teklif',
+          child: TitleMediumWhiteBoldText(
+            text: AppLocalizations.of(context)!.limited_offer_card_title,
             textAlign: TextAlign.center,
           ),
         ),
         // sub title
-        const BodyMediumWhiteText(
-          text:
-              'Jeton paketin’ni seçerek bonus\nkazanın ve yeni bölümlerin kilidini açın!',
+        BodyMediumWhiteText(
+          text: AppLocalizations.of(context)!.limited_offer_card_sub_title,
           textAlign: TextAlign.center,
         ),
       ],
@@ -117,7 +117,7 @@ class _LimitedOfferWidgetState extends BaseState<LimitedOfferWidget> {
     child: CustomButtonWidget(
       dynamicViewExtensions: dynamicViewExtensions,
       onTap: () {},
-      btnText: 'Tüm Jetonları Gör',
+      btnText: AppLocalizations.of(context)!.limited_offer_card_all_tokens_btn,
     ),
   );
 }

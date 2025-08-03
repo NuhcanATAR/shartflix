@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:shartflix/lang/app_localizations.dart';
 import 'package:shartflix/product/theme/light_theme.dart';
 
 class ExpandedLabelText extends StatefulWidget {
@@ -35,7 +36,10 @@ class _ExpandedLabelTextState extends State<ExpandedLabelText> {
             needTrim
                 ? [
                   TextSpan(
-                    text: isExpanded ? 'Daha Az' : 'Daha Fazlası',
+                    text:
+                        isExpanded
+                            ? AppLocalizations.of(context)!.expanded_label_less
+                            : AppLocalizations.of(context)!.expanded_label_more,
                     style: CustomColorTheme().themeData.textTheme.labelMedium!
                         .copyWith(
                           fontWeight: FontWeight.bold,

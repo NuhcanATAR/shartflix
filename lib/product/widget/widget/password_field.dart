@@ -59,7 +59,6 @@ class _CustomPasswordFieldWidgetState
       obscureText: isPassObscured,
       style: CustomColorTheme().themeDataSecond.textTheme.bodyMedium!.copyWith(
         color: Colors.grey,
-        fontFamily: 'Popins Light',
         fontWeight: FontWeight.bold,
       ),
       controller: widget.passwordController,

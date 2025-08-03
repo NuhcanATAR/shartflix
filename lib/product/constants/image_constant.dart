@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 enum AppImages {
-  sinFlixSplash('sin_flix_splash');
+  sinFlixSplash('sin_flix_splash'),
+  flagTurkey('turkey'),
+  flagEnglish('english');
 
   final String value;
   const AppImages(this.value);

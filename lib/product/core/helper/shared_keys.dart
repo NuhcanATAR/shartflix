@@ -1,1 +1,1 @@
-enum SharedKeys { token }
+enum SharedKeys { keyLanguage }
