@@ -3,6 +3,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -100,8 +101,9 @@ class PhotoUpdateBloc extends Bloc<PhotoUpdateEvent, PhotoUpdateState> {
         loggerPrint.printErrorLog('Error: ${response.statusCode}');
         emit(PhotoUpdateError());
       }
-    } catch (e) {
+    } catch (e, stackTrace) {
       loggerPrint.printErrorLog(e.toString());
+      await FirebaseCrashlytics.instance.recordError(e, stackTrace);
       emit(PhotoUpdateError());
     }
   }
