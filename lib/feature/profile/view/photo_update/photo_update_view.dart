@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shartflix/feature/authentication/sign_in/provider/sign_in_provider.dart';
@@ -97,65 +98,70 @@ class _PhotoUpdateViewState extends PhotoUpdateViewModel {
         child: ListView(
           children: <Widget>[
             // title and sub title
-            Padding(
-              padding: BaseUtility.vertical(BaseUtility.paddingNormalValue),
-              child: Column(
-                children: <Widget>[
-                  // title
-                  BodyMediumWhiteBoldText(
-                    text: AppLocalizations.of(context)!.profile_photo_add_title,
-                    textAlign: TextAlign.center,
-                  ),
-                  // sub title
-                  Padding(
-                    padding: BaseUtility.top(BaseUtility.paddingSmallValue),
-                    child: BodyMediumWhiteText(
+            FadeInDown(
+              child: Padding(
+                padding: BaseUtility.vertical(BaseUtility.paddingNormalValue),
+                child: Column(
+                  children: <Widget>[
+                    // title
+                    BodyMediumWhiteBoldText(
                       text:
-                          AppLocalizations.of(
-                            context,
-                          )!.profile_photo_add_sub_title,
+                          AppLocalizations.of(context)!.profile_photo_add_title,
                       textAlign: TextAlign.center,
                     ),
-                  ),
-                ],
+                    // sub title
+                    Padding(
+                      padding: BaseUtility.top(BaseUtility.paddingSmallValue),
+                      child: BodyMediumWhiteText(
+                        text:
+                            AppLocalizations.of(
+                              context,
+                            )!.profile_photo_add_sub_title,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             // photo select
-            GestureDetector(
-              onTap: () async {
-                context.read<PhotoUpdateBloc>().add(PhotoPickImage());
-              },
-              child: Container(
-                alignment: Alignment.center,
-                margin: BaseUtility.top(BaseUtility.paddingNormalHightValue),
-                child: SizedBox(
-                  width: dynamicViewExtensions.dynamicWidth(context, 0.4),
-                  height: dynamicViewExtensions.dynamicHeight(context, 0.18),
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.2),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(BaseUtility.radiusHighValue),
+            FadeInLeft(
+              child: GestureDetector(
+                onTap: () async {
+                  context.read<PhotoUpdateBloc>().add(PhotoPickImage());
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  margin: BaseUtility.top(BaseUtility.paddingNormalHightValue),
+                  child: SizedBox(
+                    width: dynamicViewExtensions.dynamicWidth(context, 0.4),
+                    height: dynamicViewExtensions.dynamicHeight(context, 0.18),
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.2),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(BaseUtility.radiusHighValue),
+                        ),
+                        border: Border.all(color: Colors.grey, width: 1.5),
+                        image:
+                            state is PhotoPicked
+                                ? DecorationImage(
+                                  image: FileImage(File(state.image.path)),
+                                  fit: BoxFit.cover,
+                                )
+                                : userModel.photoUrl.isNotEmpty
+                                ? DecorationImage(
+                                  image: NetworkImage(userModel.photoUrl),
+                                  fit: BoxFit.cover,
+                                )
+                                : null,
                       ),
-                      border: Border.all(color: Colors.grey, width: 1.5),
-                      image:
-                          state is PhotoPicked
-                              ? DecorationImage(
-                                image: FileImage(File(state.image.path)),
-                                fit: BoxFit.cover,
-                              )
-                              : userModel.photoUrl.isNotEmpty
-                              ? DecorationImage(
-                                image: NetworkImage(userModel.photoUrl),
-                                fit: BoxFit.cover,
-                              )
-                              : null,
-                    ),
-                    child: AppIcons.plus.toSvgImg(
-                      Colors.white,
-                      BaseUtility.iconMediumSecondNormalSize,
-                      BaseUtility.iconMediumSecondNormalSize,
+                      child: AppIcons.plus.toSvgImg(
+                        Colors.white,
+                        BaseUtility.iconMediumSecondNormalSize,
+                        BaseUtility.iconMediumSecondNormalSize,
+                      ),
                     ),
                   ),
                 ),
@@ -166,13 +172,15 @@ class _PhotoUpdateViewState extends PhotoUpdateViewModel {
       );
 
   // footer
-  Widget buildFooterWidget(PhotoUpdateState state) => CustomButtonWidget(
-    dynamicViewExtensions: dynamicViewExtensions,
-    onTap: () {
-      if (state is PhotoPicked) {
-        context.read<PhotoUpdateBloc>().add(UploadPhoto(state.image));
-      }
-    },
-    btnText: AppLocalizations.of(context)!.profile_photo_add_next_btn,
+  Widget buildFooterWidget(PhotoUpdateState state) => FadeInUp(
+    child: CustomButtonWidget(
+      dynamicViewExtensions: dynamicViewExtensions,
+      onTap: () {
+        if (state is PhotoPicked) {
+          context.read<PhotoUpdateBloc>().add(UploadPhoto(state.image));
+        }
+      },
+      btnText: AppLocalizations.of(context)!.profile_photo_add_next_btn,
+    ),
   );
 }

@@ -1,6 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shartflix/feature/authentication/sign_in/sign_in_view.dart';
 import 'package:shartflix/feature/authentication/sign_up/bloc/cubit.dart';
 import 'package:shartflix/feature/authentication/sign_up/bloc/event.dart';
 import 'package:shartflix/feature/authentication/sign_up/bloc/state.dart';
@@ -8,7 +8,6 @@ import 'package:shartflix/feature/authentication/sign_up/provider/sign_up_provid
 import 'package:shartflix/feature/authentication/sign_up/sign_up_viewmodel.dart';
 import 'package:shartflix/lang/app_localizations.dart';
 import 'package:shartflix/product/constants/icon_constant.dart';
-import 'package:shartflix/product/core/helper/navigator_router.dart';
 import 'package:shartflix/product/theme/light_theme.dart';
 import 'package:shartflix/product/util/util.dart';
 import 'package:shartflix/product/widget/text_widget/body_medium_text.dart';
@@ -232,38 +231,27 @@ class _SignUpViewState extends SignUpViewModel {
   );
 
   // sign up
-  Padding get buildSignUpWidget => Padding(
+  Container get buildSignUpWidget => Container(
+    alignment: Alignment.center,
     padding: BaseUtility.vertical(BaseUtility.paddingNormalValue),
-    child: Row(
-      children: <Widget>[
-        const Spacer(),
-        Flexible(
-          fit: FlexFit.tight,
-          flex: 4,
-          child: BodyMediumBlackText(
-            text: AppLocalizations.of(context)!.sign_up_login_title,
-            textAlign: TextAlign.right,
+    child: Text.rich(
+      TextSpan(
+        children: [
+          TextSpan(
+            text: '${AppLocalizations.of(context)!.sign_up_login_title}  ',
+            style: CustomColorTheme().themeDataSecond.textTheme.bodyMedium!
+                .copyWith(color: Colors.grey),
           ),
-        ),
-        Flexible(
-          fit: FlexFit.tight,
-          flex: 3,
-          child: GestureDetector(
-            onTap:
-                () => CodeNoahNavigatorRouter.pushNamed(
-                  context,
-                  SignInView.routePath,
-                ),
-            child: Padding(
-              padding: BaseUtility.left(BaseUtility.paddingSmallValue),
-              child: BodyMediumWhiteBoldText(
-                text: AppLocalizations.of(context)!.sign_up_login,
-                textAlign: TextAlign.left,
-              ),
-            ),
+          TextSpan(
+            text: AppLocalizations.of(context)!.sign_up_login,
+            style: CustomColorTheme().themeDataSecond.textTheme.bodyMedium!
+                .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+            recognizer:
+                TapGestureRecognizer()..onTap = () => Navigator.pop(context),
           ),
-        ),
-      ],
+        ],
+      ),
+      textAlign: TextAlign.left,
     ),
   );
 }

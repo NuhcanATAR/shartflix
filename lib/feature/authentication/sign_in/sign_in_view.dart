@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shartflix/feature/authentication/sign_in/bloc/bloc.dart';
@@ -34,6 +35,7 @@ class _SignInViewState extends SignInViewModel {
     final signInProvider = context.read<SignInProvider>();
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor:
             CustomColorTheme().themeDataSecond.scaffoldBackgroundColor,
       ),
@@ -195,38 +197,32 @@ class _SignInViewState extends SignInViewModel {
   );
 
   // sign up
-  Padding get buildSignUpWidget => Padding(
+  Container get buildSignUpWidget => Container(
+    alignment: Alignment.center,
     padding: BaseUtility.vertical(BaseUtility.paddingNormalValue),
-    child: Row(
-      children: <Widget>[
-        const Spacer(),
-        Flexible(
-          fit: FlexFit.tight,
-          flex: 2,
-          child: BodyMediumBlackText(
-            text: AppLocalizations.of(context)!.sign_in_register_title,
-            textAlign: TextAlign.right,
+    child: Text.rich(
+      TextSpan(
+        children: [
+          TextSpan(
+            text: '${AppLocalizations.of(context)!.sign_in_register_title}  ',
+            style: CustomColorTheme().themeDataSecond.textTheme.bodyMedium!
+                .copyWith(color: Colors.grey),
           ),
-        ),
-        Flexible(
-          fit: FlexFit.tight,
-          flex: 2,
-          child: GestureDetector(
-            onTap:
-                () => CodeNoahNavigatorRouter.pushNamed(
-                  context,
-                  SignUpView.routePath,
-                ),
-            child: Padding(
-              padding: BaseUtility.left(BaseUtility.paddingSmallValue),
-              child: BodyMediumWhiteBoldText(
-                text: AppLocalizations.of(context)!.sign_in_register,
-                textAlign: TextAlign.left,
-              ),
-            ),
+          TextSpan(
+            text: AppLocalizations.of(context)!.sign_in_register,
+            style: CustomColorTheme().themeDataSecond.textTheme.bodyMedium!
+                .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+            recognizer:
+                TapGestureRecognizer()
+                  ..onTap =
+                      () => CodeNoahNavigatorRouter.pushNamed(
+                        context,
+                        SignUpView.routePath,
+                      ),
           ),
-        ),
-      ],
+        ],
+      ),
+      textAlign: TextAlign.left,
     ),
   );
 }

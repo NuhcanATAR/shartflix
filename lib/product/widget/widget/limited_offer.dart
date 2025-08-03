@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:shartflix/lang/app_localizations.dart';
 import 'package:shartflix/product/core/base/base_state.dart';
@@ -83,41 +84,48 @@ class _LimitedOfferWidgetState extends BaseState<LimitedOfferWidget> {
   );
 
   // title and sub title
-  Widget get buildTitleAndSubTitleWidget => Padding(
-    padding: BaseUtility.vertical(BaseUtility.paddingNormalValue),
-    child: Column(
-      children: <Widget>[
-        // title
-        Padding(
-          padding: BaseUtility.bottom(BaseUtility.paddingSmallValue),
-          child: TitleMediumWhiteBoldText(
-            text: AppLocalizations.of(context)!.limited_offer_card_title,
+  Widget get buildTitleAndSubTitleWidget => FadeInDown(
+    child: Padding(
+      padding: BaseUtility.vertical(BaseUtility.paddingNormalValue),
+      child: Column(
+        children: <Widget>[
+          // title
+          Padding(
+            padding: BaseUtility.bottom(BaseUtility.paddingSmallValue),
+            child: TitleMediumWhiteBoldText(
+              text: AppLocalizations.of(context)!.limited_offer_card_title,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          // sub title
+          BodyMediumWhiteText(
+            text: AppLocalizations.of(context)!.limited_offer_card_sub_title,
             textAlign: TextAlign.center,
           ),
-        ),
-        // sub title
-        BodyMediumWhiteText(
-          text: AppLocalizations.of(context)!.limited_offer_card_sub_title,
-          textAlign: TextAlign.center,
-        ),
-      ],
+        ],
+      ),
     ),
   );
 
   // bonuc cards
-  Widget get buildBonusCardsWidget => const BonusCardWidget();
+  Widget get buildBonusCardsWidget =>
+      FadeInDown(child: const BonusCardWidget());
 
   // package list
   Widget get buildPackageListWidget =>
       PackageListWidget(dynamicViewExtensions: dynamicViewExtensions);
 
   // all tokens button
-  Widget get buildAllTokensButtonWidget => Container(
-    margin: BaseUtility.top(BaseUtility.paddingSmallValue),
-    child: CustomButtonWidget(
-      dynamicViewExtensions: dynamicViewExtensions,
-      onTap: () {},
-      btnText: AppLocalizations.of(context)!.limited_offer_card_all_tokens_btn,
+  Widget get buildAllTokensButtonWidget => FadeInUp(
+    duration: const Duration(seconds: 1),
+    child: Container(
+      margin: BaseUtility.top(BaseUtility.paddingSmallValue),
+      child: CustomButtonWidget(
+        dynamicViewExtensions: dynamicViewExtensions,
+        onTap: () {},
+        btnText:
+            AppLocalizations.of(context)!.limited_offer_card_all_tokens_btn,
+      ),
     ),
   );
 }
