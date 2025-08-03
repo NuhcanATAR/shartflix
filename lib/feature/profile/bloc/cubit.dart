@@ -1,5 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shartflix/feature/profile/bloc/event.dart';
 import 'package:shartflix/feature/profile/bloc/state.dart';
@@ -27,9 +28,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           await ProfileRepository().getFavoriteMovie();
       final ProfileModel userModel = await ProfileRepository().getUser();
       emit(ProfileLoaded(movieList, userModel));
-    } catch (e) {
-      emit(ProfileError('Hata Oluştu'));
+    } catch (e, stackTrace) {
       loggerPrint.printErrorLog(e.toString());
+      await FirebaseCrashlytics.instance.recordError(e, stackTrace);
+      emit(ProfileError('Hata Oluştu'));
     }
   }
 }

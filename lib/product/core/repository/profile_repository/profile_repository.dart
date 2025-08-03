@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:shartflix/product/core/helper/logger_package.dart';
@@ -77,8 +78,9 @@ class ProfileRepository {
       }
 
       return ProfileModel(id: '', name: '', email: '', photoUrl: '');
-    } catch (e) {
+    } catch (e, stackTrace) {
       loggerPrint.printErrorLog(e.toString());
+      await FirebaseCrashlytics.instance.recordError(e, stackTrace);
       return ProfileModel(id: '', name: '', email: '', photoUrl: '');
     }
   }
