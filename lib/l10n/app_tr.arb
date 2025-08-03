@@ -1,0 +1,109 @@
+{
+    "sign_in_title": "Merhabalar",
+    "sign_in_sub_title": "Zamanın değişkenliği, hayatın zaman zaman acı verici unsurları ve iki yönlü eleifend at",
+    "sign_in_email_field": "E-posta",
+    "sign_in_password_field": "Şifre",
+    "sign_in_forgot_password": "Şifremi Unuttum",
+    "sign_in_button": "Giriş Yap",
+    "sign_in_register_title": "Bir hesabın yok mu?",
+    "sign_in_register": "Kayıt Ol!",
+    "sign_in_error": "Hata oluştu, bilgilerinizi kontrol ediniz!",
+    "sign_in_loading": "Lütfen Bekleyiniz...",
+
+    
+    "sign_up_title": "Hoşgeldiniz",
+    "sign_up_sub_title": "Zamanın değişkenliği, hayatın zaman zaman acı verici unsurları ve iki yönlü eleifend at.",
+    "sign_up_name_field": "Ad Soyad",
+    "sign_up_email_field": "E-posta",
+    "sign_up_password_field": "Şifre",
+    "sign_up_password_repead_field": "Şifre Tekrar",
+    "sign_up_agreement_title_one": "Kullanıcı sözleşmesini",
+    "sign_up_agreement_title_second": "okudum ve kabul ediyorum",
+    "sign_up_agreement_title_three": "Bu sözleşmeyi okuyarak devam ediniz lütfen.",
+    "sign_up_button": "Şimdi Kaydol",
+    "sign_up_login_title": "Zaten bir hesabın var mı?",
+    "sign_up_login": "Giriş Yap!",
+    "sign_up_password_error": "Şifreler Uyuşmuyor lütfen şifrelerinizi kontrol ediniz.",
+    "sign_up_success": "Hesabınız başarıyla oluşturulmuştur!",
+    "sign_up_error": "Hata oluştu, bilgilerinizi kontrol ediniz!",
+    "sign_up_loading": "Lütfen Bekleyiniz...",
+
+    
+    "home_error": "Hata oluştu, Lütfen daha sonra tekrar deneyiniz!",
+
+
+    "navigation_bar_menu_one": "Anasayfa",
+    "navigation_bar_menu_second": "Profil",
+    "navigation_bar_exit_dialog_title": "Çıkış Yapma",
+    "navigation_bar_exit_dialog_sub_title": "Çıkış yapmak için seçiminizi yapınız!",
+    "navigation_bar_exit_dialog_exit_account_btn": "Hesaptan Çıkış Yap",
+    "navigation_bar_exit_app_btn": "Uygulamayı Kapat",
+
+
+    "profile_appbar": "Profil Detayı",
+    "profile_photo_add_btn": "Fotoğraf Ekle",
+    "profile_favorite_list_title": "Beğendiğim Filmler",
+    "profile_error": "Hata Oluştu",
+
+
+    "profile_photo_add_title": "Fotoğraflarınzı Yükleyin",
+    "profile_photo_add_sub_title": "Kaynaklar teşvik edici\nnrahatlama zemini kaybı cc.",
+    "profile_photo_add_next_btn": "Devam Et",
+    "profile_photo_add_success": "Profil Fotoğrafı Güncellendi!",
+    "profile_photo_add_error": "Hata oluştu, lütfen daha sonra tekrar deneyiniz!",
+    "profile_photo_add_loading": "Fotoğraf Yükleniyor Lütfen Bekleyiniz...",
+
+    
+    "go_router_page_not_found": "Sayfa bulunamadı",
+
+    
+    "validator_required_field": "Zorunlu Alan",
+    "validator_invalid_value": "Geçersiz Değer",
+
+
+    "validator_email_empty_error": "E-posta alanı boş bırakılamaz",
+    "validator_invalid_email": "Geçersiz e-posta formatı",
+    
+
+    "validator_password_empty": "Şifre alanı boş bırakılamaz",
+    "validator_password_error_one": "Şifre en az 8 karakter uzunluğunda olmalıdır",
+    "validator_password_error_second": "Şifre en az bir büyük harf içermelidir",
+    "validator_password_error_three": "Şifre en az bir küçük harf içermelidir",
+    "validator_password_error_four": "Şifre en az bir rakam içermelidir",
+    "validator_password_error_five": "Şifre en az bir özel karakter içermelidir",
+
+
+    "validator_phone_number_empty": "Zorunlu Alan",
+    "validator_phone_number_error": "Geçersiz Telefon Numarası",
+    "validator_phone_number_error_second": "Geçersiz Telefon Numarası",
+
+
+    "bonus_card_title": "Alacağınız Bonuslar",
+    "bonus_card_pro_one_label": "Permium\nHesap\n",
+    "bonus_card_pro_second_label": "Daha\nFazla Eşleşme",
+    "bonus_card_pro_three_label": "Öne\nÇıkarma\n",
+    "bonus_card_pro_four_label": "Daha\nFazla Beğeni",
+
+
+    "expanded_label_more": "Daha Fazlası",
+    "expanded_label_less": "Daha Az",
+
+
+    "limited_offer_card_title": "Sınırlı Teklif",
+    "limited_offer_card_sub_title": "Jeton paketin’ni seçerek bonus\nkazanın ve yeni bölümlerin kilidini açın!",
+    "limited_offer_card_all_tokens_btn": "Tüm Jetonları Gör",  
+
+    
+    "package_list_title": "Kilidi açmak için bir jeton paketi seçin",
+    "package_list_token_label": "Jeton",
+    "package_list_weekly": "Başına haftalık",
+
+    
+    "pro_button_text": "Sınırlı Teklif",
+
+
+    "language_select_appbar": "Dil Seçimi",
+    "language_select_english": "İngilizce",
+    "language_select_turkey": "Türkçe"
+ 
+}

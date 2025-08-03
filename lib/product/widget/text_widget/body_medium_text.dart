@@ -43,7 +43,6 @@ class BodyMediumBlackText extends StatelessWidget {
       textAlign: textAlign,
       style: CustomColorTheme().themeData.textTheme.bodyMedium!.copyWith(
         color: Colors.grey,
-        fontWeight: FontWeight.bold,
       ),
     );
   }
@@ -64,9 +63,8 @@ class BodyMediumWhiteText extends StatelessWidget {
     return Text(
       text,
       textAlign: textAlign,
-      style: CustomColorTheme().themeData.textTheme.bodyMedium!.copyWith(
+      style: CustomColorTheme().themeDataSecond.textTheme.bodyMedium!.copyWith(
         color: Theme.of(context).colorScheme.onPrimary,
-        fontWeight: FontWeight.bold,
       ),
     );
   }
