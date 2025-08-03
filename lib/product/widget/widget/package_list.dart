@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shartflix/lang/app_localizations.dart';
 import 'package:shartflix/product/extension/dynamic_extension.dart';
 import 'package:shartflix/product/theme/light_theme.dart';
 import 'package:shartflix/product/util/util.dart';
@@ -17,7 +18,7 @@ class PackageListWidget extends StatelessWidget {
       child: Column(
         children: <Widget>[
           // title
-          buildTitleWidget,
+          buildTitleWidget(context),
           // list
           buildListWidget(context),
         ],
@@ -26,10 +27,10 @@ class PackageListWidget extends StatelessWidget {
   }
 
   // title
-  Widget get buildTitleWidget => Padding(
+  Widget buildTitleWidget(BuildContext context) => Padding(
     padding: BaseUtility.bottom(BaseUtility.paddingNormalValue),
-    child: const BodyMediumWhiteBoldText(
-      text: 'Kilidi açmak için bir jeton paketi seçin',
+    child: BodyMediumWhiteBoldText(
+      text: AppLocalizations.of(context)!.package_list_title,
       textAlign: TextAlign.center,
     ),
   );
@@ -94,8 +95,11 @@ class PackageListWidget extends StatelessWidget {
                                 text: '330',
                                 textAlign: TextAlign.center,
                               ),
-                              const BodyMediumWhiteText(
-                                text: 'Jeton',
+                              BodyMediumWhiteText(
+                                text:
+                                    AppLocalizations.of(
+                                      context,
+                                    )!.package_list_token_label,
                                 textAlign: TextAlign.center,
                               ),
                             ],
@@ -107,16 +111,19 @@ class PackageListWidget extends StatelessWidget {
                         padding: BaseUtility.bottom(
                           BaseUtility.paddingNormalValue,
                         ),
-                        child: const Column(
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            BodyMediumWhiteBoldText(
+                            const BodyMediumWhiteBoldText(
                               text: '₺99,99',
                               textAlign: TextAlign.center,
                             ),
                             BodyMediumWhiteText(
-                              text: 'Başına haftalık',
+                              text:
+                                  AppLocalizations.of(
+                                    context,
+                                  )!.package_list_weekly,
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -215,8 +222,11 @@ class PackageListWidget extends StatelessWidget {
                                 text: '3.375',
                                 textAlign: TextAlign.center,
                               ),
-                              const BodyMediumWhiteText(
-                                text: 'Jeton',
+                              BodyMediumWhiteText(
+                                text:
+                                    AppLocalizations.of(
+                                      context,
+                                    )!.package_list_token_label,
                                 textAlign: TextAlign.center,
                               ),
                             ],
@@ -228,16 +238,19 @@ class PackageListWidget extends StatelessWidget {
                         padding: BaseUtility.bottom(
                           BaseUtility.paddingNormalValue,
                         ),
-                        child: const Column(
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            BodyMediumWhiteBoldText(
+                            const BodyMediumWhiteBoldText(
                               text: '₺799,99',
                               textAlign: TextAlign.center,
                             ),
                             BodyMediumWhiteText(
-                              text: 'Başına haftalık',
+                              text:
+                                  AppLocalizations.of(
+                                    context,
+                                  )!.package_list_weekly,
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -336,8 +349,11 @@ class PackageListWidget extends StatelessWidget {
                                 text: '1.350',
                                 textAlign: TextAlign.center,
                               ),
-                              const BodyMediumWhiteText(
-                                text: 'Jeton',
+                              BodyMediumWhiteText(
+                                text:
+                                    AppLocalizations.of(
+                                      context,
+                                    )!.package_list_token_label,
                                 textAlign: TextAlign.center,
                               ),
                             ],
@@ -349,16 +365,19 @@ class PackageListWidget extends StatelessWidget {
                         padding: BaseUtility.bottom(
                           BaseUtility.paddingNormalValue,
                         ),
-                        child: const Column(
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            BodyMediumWhiteBoldText(
+                            const BodyMediumWhiteBoldText(
                               text: '₺399,99',
                               textAlign: TextAlign.center,
                             ),
                             BodyMediumWhiteText(
-                              text: 'Başına haftalık',
+                              text:
+                                  AppLocalizations.of(
+                                    context,
+                                  )!.package_list_weekly,
                               textAlign: TextAlign.center,
                             ),
                           ],

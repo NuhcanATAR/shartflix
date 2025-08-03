@@ -31,7 +31,7 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder:
               (_) => Scaffold(
-                body: Center(child: Text('Sayfa bulunamadı: ${settings.name}')),
+                body: Center(child: Text('Page Not Found: ${settings.name}')),
               ),
         );
     }

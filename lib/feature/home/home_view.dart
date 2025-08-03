@@ -5,6 +5,7 @@ import 'package:shartflix/feature/home/bloc/event.dart';
 import 'package:shartflix/feature/home/bloc/state.dart';
 import 'package:shartflix/feature/home/home_viewmodel.dart';
 import 'package:shartflix/feature/home/provider/home_provider.dart';
+import 'package:shartflix/lang/app_localizations.dart';
 import 'package:shartflix/product/constants/icon_constant.dart';
 import 'package:shartflix/product/model/movie_model/movie_model.dart';
 import 'package:shartflix/product/util/util.dart';
@@ -34,7 +35,12 @@ class _HomeViewState extends HomeViewModel {
         }
 
         if (state is HomeError) {
-          return const Center(child: Text("Error"));
+          return Center(
+            child: BodyMediumWhiteText(
+              text: AppLocalizations.of(context)!.home_error,
+              textAlign: TextAlign.center,
+            ),
+          );
         }
 
         if (state is HomeLoaded) {

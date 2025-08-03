@@ -42,11 +42,7 @@ class _CustomEmailFieldWidgetState extends BaseState<CustomEmailFieldWidget> {
           ),
           child: TextFormField(
             style: CustomColorTheme().themeDataSecond.textTheme.bodyMedium!
-                .copyWith(
-                  color: Colors.grey,
-                  fontFamily: 'Popins Light',
-                  fontWeight: FontWeight.bold,
-                ),
+                .copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
 
             controller: widget.emailController,
             validator: (String? value) {

@@ -5,6 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shartflix/feature/authentication/sign_in/sign_in_view.dart';
 import 'package:shartflix/feature/home/home_view.dart';
 import 'package:shartflix/feature/profile/profile_view.dart';
+import 'package:shartflix/lang/app_localizations.dart';
 import 'package:shartflix/product/core/helper/navigator_router.dart';
 import 'package:shartflix/product/util/util.dart';
 import 'package:shartflix/product/widget/text_widget/body_medium_text.dart';
@@ -34,12 +35,18 @@ class NavigationBarProvider extends ChangeNotifier {
           builder:
               (context) => AlertDialog(
                 backgroundColor: Colors.black,
-                title: const BodyMediumWhiteBoldText(
-                  text: 'Çıkış Yapma',
+                title: BodyMediumWhiteBoldText(
+                  text:
+                      AppLocalizations.of(
+                        context,
+                      )!.navigation_bar_exit_dialog_title,
                   textAlign: TextAlign.center,
                 ),
-                content: const BodyMediumWhiteText(
-                  text: 'Çıkış yapmak için seçiminizi yapınız!',
+                content: BodyMediumWhiteText(
+                  text:
+                      AppLocalizations.of(
+                        context,
+                      )!.navigation_bar_exit_dialog_sub_title,
                   textAlign: TextAlign.center,
                 ),
                 actionsPadding: BaseUtility.all(BaseUtility.paddingNormalValue),
@@ -57,8 +64,10 @@ class NavigationBarProvider extends ChangeNotifier {
                           onPressed: () {
                             exitAccount(context);
                           },
-                          child: const Text(
-                            'Hesaptan Çıkış Yap',
+                          child: Text(
+                            AppLocalizations.of(
+                              context,
+                            )!.navigation_bar_exit_dialog_exit_account_btn,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -75,8 +84,10 @@ class NavigationBarProvider extends ChangeNotifier {
                           onPressed: () {
                             Navigator.pop(context, true);
                           },
-                          child: const Text(
-                            'Uygulamayı Kapat',
+                          child: Text(
+                            AppLocalizations.of(
+                              context,
+                            )!.navigation_bar_exit_app_btn,
                             textAlign: TextAlign.center,
                           ),
                         ),

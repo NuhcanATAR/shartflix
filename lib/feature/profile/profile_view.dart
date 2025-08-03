@@ -5,7 +5,9 @@ import 'package:shartflix/feature/profile/bloc/cubit.dart';
 import 'package:shartflix/feature/profile/bloc/state.dart';
 import 'package:shartflix/feature/profile/profile_viewmodel.dart';
 import 'package:shartflix/feature/profile/provider/profile_provider.dart';
+import 'package:shartflix/feature/profile/view/language/language_view.dart';
 import 'package:shartflix/feature/profile/view/photo_update/photo_update_view.dart';
+import 'package:shartflix/lang/app_localizations.dart';
 import 'package:shartflix/product/constants/icon_constant.dart';
 import 'package:shartflix/product/core/helper/navigator_router.dart';
 import 'package:shartflix/product/theme/light_theme.dart';
@@ -55,9 +57,40 @@ class _ProfileViewState extends ProfileViewModel {
           ),
         ),
         centerTitle: true,
-        title: const BodyMediumWhiteBoldText(
-          text: 'Profil Detayı',
-          textAlign: TextAlign.center,
+        title: Row(
+          children: <Widget>[
+            IconButton(
+              onPressed:
+                  () => CodeNoahNavigatorRouter.pushNamed(
+                    context,
+                    LanguageSelectView.routePath,
+                  ),
+              icon: Container(
+                width: 40,
+                height: 40,
+                padding: BaseUtility.all(BaseUtility.paddingSmallValue),
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.2),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(BaseUtility.radiusCircularHighValue),
+                  ),
+                  border: Border.all(color: Colors.white, width: 1),
+                ),
+                child: const Icon(
+                  Icons.language,
+                  color: Colors.white,
+                  size: BaseUtility.iconMediumNormalSize,
+                ),
+              ),
+            ),
+            Padding(
+              padding: BaseUtility.left(BaseUtility.paddingSmallValue),
+              child: BodyMediumWhiteBoldText(
+                text: AppLocalizations.of(context)!.profile_appbar,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
         ),
         actions: [
           ProButtonWidget(
@@ -169,8 +202,8 @@ class _ProfileViewState extends ProfileViewModel {
                   Radius.circular(BaseUtility.radiusNormalValue),
                 ),
               ),
-              child: const BodyMediumWhiteBoldText(
-                text: 'Fotoğraf Ekle',
+              child: BodyMediumWhiteBoldText(
+                text: AppLocalizations.of(context)!.profile_photo_add_btn,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -193,13 +226,13 @@ class _ProfileViewState extends ProfileViewModel {
         // title
         SizedBox(
           width: dynamicViewExtensions.maxWidth(context),
-          child: const Padding(
-            padding: EdgeInsetsGeometry.only(
+          child: Padding(
+            padding: const EdgeInsetsGeometry.only(
               top: BaseUtility.paddingNormalValue,
               bottom: BaseUtility.paddingNormalHightValue,
             ),
             child: BodyMediumWhiteBoldText(
-              text: 'Beğendiğim Filmler',
+              text: AppLocalizations.of(context)!.profile_favorite_list_title,
               textAlign: TextAlign.left,
             ),
           ),

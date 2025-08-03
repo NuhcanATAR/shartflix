@@ -4,6 +4,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shartflix/feature/profile/bloc/event.dart';
 import 'package:shartflix/feature/profile/bloc/state.dart';
+import 'package:shartflix/lang/app_localizations.dart';
 import 'package:shartflix/product/core/helper/logger_package.dart';
 import 'package:shartflix/product/core/repository/profile_repository/profile_repository.dart';
 import 'package:shartflix/product/model/movie_model/movie_model.dart';
@@ -31,7 +32,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     } catch (e, stackTrace) {
       loggerPrint.printErrorLog(e.toString());
       await FirebaseCrashlytics.instance.recordError(e, stackTrace);
-      emit(ProfileError('Hata Oluştu'));
+      if (!event.context.mounted) return;
+      emit(ProfileError(AppLocalizations.of(event.context)!.profile_error));
     }
   }
 }
