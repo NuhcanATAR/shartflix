@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shartflix/feature/home/bloc/bloc.dart';
+import 'package:shartflix/feature/home/bloc/cubit.dart';
 import 'package:shartflix/feature/home/bloc/event.dart';
 import 'package:shartflix/feature/home/bloc/state.dart';
 import 'package:shartflix/feature/home/home_viewmodel.dart';

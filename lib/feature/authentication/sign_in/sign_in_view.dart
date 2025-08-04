@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shartflix/feature/authentication/sign_in/bloc/bloc.dart';
+import 'package:shartflix/feature/authentication/sign_in/bloc/cubit.dart';
 import 'package:shartflix/feature/authentication/sign_in/bloc/event.dart';
 import 'package:shartflix/feature/authentication/sign_in/bloc/state.dart';
 import 'package:shartflix/feature/authentication/sign_in/provider/sign_in_provider.dart';
